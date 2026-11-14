@@ -274,6 +274,9 @@
     box-shadow: 0 16px 40px color-mix(in srgb, var(--accent) 25%, transparent);
   }
   .author .card b { font-size: 22px; display: block; }
+  .author.second { margin-top: 44px; }
+  .author .big-avatar.v { background: linear-gradient(140deg, var(--blue), var(--violet)); color: #0b1430;
+    box-shadow: 0 16px 40px color-mix(in srgb, var(--blue) 25%, transparent); }
   .author .card span { color: var(--dim); font-size: 14px; }
   .author .card a { display: inline-block; margin-top: 12px; font-weight: 600; }
   .tags { display: flex; flex-wrap: wrap; gap: 8px; margin: 18px 0 0; padding: 0; list-style: none; }
@@ -343,7 +346,7 @@
       <a href="#instalace">Instalace</a>
       <a href="#historie">Historie</a>
       <a href="#vyvoj">Vývoj</a>
-      <a href="#autor">O autorovi</a>
+      <a href="#autor">O autorech</a>
     </nav>
     <div class="pill">verze 6.3</div>
   </div>
@@ -500,12 +503,12 @@
       <li class="upd minor"><div class="row"><span class="ver">5.5</span><span class="badge">Malá aktualizace</span><span class="name">Proměnné u, v, w a soustavy</span><time>4. 11. 2026</time></div><ul><li>Proměnné u, v, w v čase, každá s vlastní rychlostí a rozsahem.</li><li>Soustavy HEX, BIN, OCT a bitové operace (and, or, xor, not, posuny).</li><li>Přerušení dlouhého výpočtu klávesou AC, zatížení procesoru v liště a rychlejší grafy (obě jádra).</li></ul></li>
       <li class="upd minor"><div class="row"><span class="ver">5.4</span><span class="badge">Malá aktualizace</span><span class="name">Přesné zlomky</span><time>3. 11. 2026</time></div><ul><li>Výsledek jako přesný zlomek i smíšené číslo, přepínání zlomek ⇔ desetinné číslo, psaní zlomku na patra.</li></ul></li>
       <li class="upd minor"><div class="row"><span class="ver">5.3</span><span class="badge">Malá aktualizace</span><span class="name">Oprava grafů</span><time>3. 11. 2026</time></div><ul><li>Implicitní grafy bez děr a výpadků (např. tan(x)·y = 5) a lepší husté oblasti.</li></ul></li>
-      <li class="upd minor"><div class="row"><span class="ver">5.2</span><span class="badge">Malá aktualizace</span><span class="name">Čas t a Historie</span><time>2. 11. 2026</time></div><ul><li>Animace grafů s časem t: spustit, pauza, rychlost, rozsah, postupné kreslení parametrických křivek.</li><li>Historie vzorců – starý vzorec znovu bez psaní; podržení ◀ ▶ ⌫ opakuje.</li></ul></li>
+      <li class="upd minor"><div class="row"><span class="ver">5.2</span><span class="badge">Malá aktualizace</span><span class="name">Čas t a Historie</span><time>2. 11. 2026</time></div><ul><li>Animace grafů s časem t (nápad Vojty): spustit, pauza, rychlost, rozsah, postupné kreslení parametrických křivek.</li><li>Historie vzorců – starý vzorec znovu bez psaní; podržení ◀ ▶ ⌫ opakuje.</li></ul></li>
       <li class="upd minor"><div class="row"><span class="ver">5.1</span><span class="badge">Malá aktualizace</span><span class="name">Oprava displeje</span><time>28. 10. 2026</time></div><ul><li>Displej bez pinu podsvícení po vypnutí nesvítí bíle, ale zůstane černý v úsporném režimu.</li></ul></li>
       <li class="upd major"><div class="big">5<small>verze</small></div><span class="badge">Velká aktualizace</span><h3>Klávesnice</h3><time>27. 10. 2026</time><ul><li>Klávesnici kreslí přímo kalkulačka – zkušebně se zobrazovala v mobilu přes Wi-Fi.</li><li>Psaný řádek s kurzorem a náhledem výsledku dole na displeji.</li><li>Parametrické grafy x(t), y(t) a mocniny funkcí jako sin³(t).</li><li>Každý režim má svou hlavní stránku klávesnice, exponent se píše nahoru, bez automatických závorek.</li></ul></li>
       <li class="upd minor"><div class="row"><span class="ver">4.2</span><span class="badge">Malá aktualizace</span><span class="name">Nové zadávání matic</span><time>27. 10. 2026</time></div><ul><li>Matice se píšou po řádcích do mřížky, přehled všech matic, rychlé akce číslem a úprava jednoho prvku.</li></ul></li>
       <li class="upd minor"><div class="row"><span class="ver">4.1</span><span class="badge">Malá aktualizace</span><span class="name">Ikony</span><time>27. 10. 2026</time></div><ul><li>Každý režim má ikonu v menu i v liště nahoře; menu jako seznam nebo mřížka.</li></ul></li>
-      <li class="upd major"><div class="big">4<small>verze</small></div><span class="badge">Velká aktualizace</span><h3>Režimy</h3><time>27. 10. 2026</time><ul><li>Menu po zapnutí s režimy Výpočty, Grafy, Komplexní čísla, Matice, Rovnice, Nastavení a Nápověda.</li><li>Komplexní čísla, matice A–D, rovnice se všemi kořeny a soustavy lineárních rovnic.</li><li>Víc grafů najednou, zoom, posun, hodnota v bodě, kořeny a průsečíky.</li><li>Vlastní ovladač displeje s DMA na 80 MHz, kreslení na druhém jádře, úspora energie a nastavení, která se pamatují.</li></ul></li>
+      <li class="upd major"><div class="big">4<small>verze</small></div><span class="badge">Velká aktualizace</span><h3>Režimy</h3><time>27. 10. 2026</time><ul><li>Menu po zapnutí s režimy Výpočty, Grafy, Komplexní čísla, Matice, Rovnice, Nastavení a Nápověda.</li><li>Komplexní čísla (nápad Vojty), matice A–D, rovnice se všemi kořeny a soustavy lineárních rovnic.</li><li>Víc grafů najednou, zoom, posun, hodnota v bodě, kořeny a průsečíky.</li><li>Vlastní ovladač displeje s DMA na 80 MHz, kreslení na druhém jádře, úspora energie a nastavení, která se pamatují.</li></ul></li>
       <li class="upd major"><div class="big">3<small>verze</small></div><span class="badge">Velká aktualizace</span><h3>Nový vzhled</h3><time>26. 10. 2026</time><ul><li>Nové GUI s vyhlazeným písmem s háčky, karta s výsledkem, symboly √ π × a čísla po trojicích.</li><li>Animace: úvodní logo, posun historie, zatřesení při chybě, odkrývání grafu.</li><li>Grafy funkcí po sloupcích pixelů, operátor % (modulo), maximální výkon procesoru a displeje.</li></ul></li>
       <li class="upd major"><div class="big">2<small>verze</small></div><span class="badge">Velká aktualizace</span><h3>Grafy</h3><time>26. 10. 2026</time><ul><li>Grafy funkcí i vztahů x a y (kružnice, nerovnice, oblasti) a vlastní rozsah grafu.</li><li>Opravy výpočtů oproti původní kalkulačce (mocniny, záporná čísla, velká čísla), psaní znaků √ π ².</li><li>Tmavší vzhled, nápověda na displeji a příkaz invert pro displeje s obrácenými barvami.</li></ul></li>
       <li class="upd major"><div class="big">1<small>verze</small></div><span class="badge">Velká aktualizace</span><h3>První verze</h3><time>25. 10. 2026</time><ul><li>Vojtova kalkulačka Caltucalor pro počítač (C#) přepsaná tak, aby běžela přímo na ESP32-S3 s barevným displejem.</li><li>Příklady se zkušebně posílaly přes Bluetooth nebo z počítače přes USB, výsledek se ukázal na displeji.</li><li>Výsledky ověřené proti původní kalkulačce.</li></ul></li>
@@ -532,7 +535,8 @@
       <p>Caltucalor začal jako kalkulačka pro počítač v C#. Napsal ji wrezeho kamarád <strong>Vojta</strong>,
         který s projektem i pomáhal. Na konci října 2026 z ní začala vznikat skutečná kapesní kalkulačka na čipu
         ESP32-S3 – s vlastním displejem, klávesnicí a baterií.</p>
-      <p>Práce je rozdělená jasně: wreze vymýšlí, co má kalkulačka umět, vybírá a zapojuje hardware a každou
+      <p>Většinu toho, co kalkulačka umí, vymyslel wreze. Některé nápady přinesl Vojta – třeba komplexní čísla
+        a proměnné v čase (t, u, v, w), se kterými se grafy hýbou. wreze taky vybírá a zapojuje hardware a každou
         verzi zkouší na skutečné kalkulačce. Claude píše kód, testy a dokumentaci a hlídá, aby každá verze
         počítala přesně jako ta původní.</p>
     </section>
@@ -550,13 +554,13 @@
           <p>Přibyly grafy – funkce i vztahy x a y, jako kružnice nebo nerovnice. Kalkulačka dostala nový vzhled
             s vyhlazeným písmem Inter (i s háčky a čárkami), animace a procesor i displej puštěné na plný výkon.</p></li>
         <li><span class="when">27. 10. 2026</span><h3>Režimy a rychlý displej</h3>
-          <p>Menu s režimy: komplexní čísla, matice, rovnice a soustavy rovnic, víc grafů najednou se zoomem, posunem
+          <p>Menu s režimy: komplexní čísla (nápad Vojty), matice, rovnice a soustavy rovnic, víc grafů najednou se zoomem, posunem
             a hledáním kořenů. Každý režim dostal ikonu. Ovladač displeje jsme napsali vlastní – obraz posílá přes
             DMA na 80 MHz a kreslí na druhém jádře procesoru, takže první jádro může mezitím počítat.</p></li>
         <li><span class="when">27. 10. – 2. 11.</span><h3>Klávesnice</h3>
           <p>Klávesnici kreslí přímo kalkulačka jako obrázek 320 × 240 a každý režim má svou hlavní stránku kláves.
             Zkušebně se zobrazovala v mobilu přes Wi-Fi, teď je na dotykovém displeji pod hlavním. Přibyl psaný
-            řádek s kurzorem, parametrické grafy, proměnná t a animace grafů v čase.</p></li>
+            řádek s kurzorem, parametrické grafy, proměnná t a animace grafů v čase – další Vojtův nápad.</p></li>
         <li><span class="when">3. – 4. 11.</span><h3>Přesná matematika</h3>
           <p>Výsledky jako přesné zlomky (počítá se s celými čitateli a jmenovateli, ne s desetinnými čísly),
             soustavy HEX a BIN s bitovými operacemi, přerušení dlouhého výpočtu, proměnné u, v, w, uložené grafy,
@@ -584,7 +588,7 @@
         <div class="panel">
           <h3><span class="avatar">W</span>wreze</h3>
           <ul>
-            <li><b>Nápad</b> udělat z Caltucaloru kapesní kalkulačku a <b>rozhodování</b>, co má umět a jak má vypadat</li>
+            <li><b>Nápad</b> udělat z Caltucaloru kapesní kalkulačku a <b>většina nápadů</b>, co má umět a jak má vypadat</li>
             <li><b>Hardware:</b> výběr a zapojení desek ESP32-S3 a XIAO, displejů, baterie a nabíječky</li>
             <li><b>Zkoušení</b> každé verze na skutečné kalkulačce a hlášení, co nefunguje</li>
           </ul>
@@ -593,7 +597,7 @@
           <h3><span class="avatar v">V</span>Vojta</h3>
           <ul>
             <li><b>Původní Caltucalor</b> – kalkulačka v C# pro počítač, ze které všechno vzešlo</li>
-            <li>Její výsledky jsou <b>měřítkem</b>, se kterým se porovnává každá nová verze</li>
+            <li><b>Nápady:</b> komplexní čísla a proměnné v čase (t, u, v, w)</li>
             <li><b>Pomoc</b> s projektem</li>
           </ul>
         </div>
@@ -637,7 +641,7 @@
   <!-- ===================== O AUTOROVI ===================== -->
   <section class="tab" id="autor" data-tab>
     <div class="tab-head">
-      <p class="eyebrow">O autorovi</p>
+      <p class="eyebrow">O autorech</p>
       <h1>Kdo za tím stojí</h1>
     </div>
     <div class="author">
@@ -651,8 +655,8 @@
         <p>wreze studuje návrh čipů a ve volném čase staví vlastní zařízení s ESP32-S3. Baví ho elektronika,
           hardwarové projekty a technické pokusy – zjistit, jak věci fungují uvnitř, a pak je přimět dělat
           něco nového.</p>
-        <p>Caltucalor je jeho projekt od nápadu přes zapojení až po zkoušení každé verze. Základem je kalkulačka
-          pro počítač, kterou v C# napsal jeho kamarád <strong>Vojta</strong> – a s projektem mu i pomáhal.</p>
+        <p>Caltucalor je jeho projekt – od zapojení přes většinu nápadů až po zkoušení každé verze. Základem je
+          kalkulačka pro počítač, kterou v C# napsal jeho kamarád <strong>Vojta</strong>.</p>
         <p>A když zrovna nepájí, létá vesmírem v No Man's Sky.</p>
         <ul class="tags" aria-label="Čím se zabývá">
           <li>ESP32-S3</li><li>PlatformIO</li><li>C++</li><li>elektronika</li><li>návrh čipů</li><li>Unreal Engine</li>
@@ -660,14 +664,31 @@
       </div>
     </div>
     <div class="highlights">
-      <div class="panel"><h3>Původní Caltucalor</h3>
-        <p>Kalkulačku pro počítač v C# napsal <strong>Vojta</strong>. Její výsledky jsou dodnes měřítkem,
-          se kterým se porovnává každá nová verze.</p></div>
+      <div class="panel"><h3>Nápady</h3>
+        <p>Většinu toho, co kalkulačka umí, vymyslel wreze. Komplexní čísla a proměnné v čase přinesl Vojta.</p></div>
       <div class="panel"><h3>Hardware</h3>
         <p>Deska XIAO ESP32S3, displej s výsledky, dotykový displej s klávesnicí, baterie s nabíječkou
           TP4056 a vypínač.</p></div>
       <div class="panel"><h3>Zkoušení</h3>
         <p>Nové verze zkouší na skutečné kalkulačce a hlásí, co je potřeba opravit nebo přidat.</p></div>
+    </div>
+
+    <div class="author second">
+      <div class="card">
+        <div class="big-avatar v">V</div>
+        <b>Vojta</b>
+        <span>autor původního Caltucaloru</span>
+      </div>
+      <div class="story">
+        <p><strong>Vojta</strong> je wrezeho kamarád a napsal původní Caltucalor – kalkulačku pro počítač v C#,
+          ze které celý projekt vzešel. Její výsledky jsou dodnes měřítkem, se kterým se porovnává každá nová
+          verze kapesní kalkulačky.</p>
+        <p>S projektem pomáhal a přišel s nápady na komplexní čísla a proměnné v čase (t, u, v, w), se kterými
+          se grafy na displeji hýbou.</p>
+        <ul class="tags" aria-label="Co do projektu přinesl">
+          <li>C#</li><li>původní Caltucalor</li><li>komplexní čísla</li><li>grafy v čase</li>
+        </ul>
+      </div>
     </div>
     <section class="block">
       <h2>Další projekty</h2>
