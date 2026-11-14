@@ -6,6 +6,15 @@
 <title>Caltucalor – kapesní kalkulačka</title>
 <meta name="description" content="Caltucalor – kapesní kalkulačka na ESP32-S3 s grafy, zlomky, maticemi a obvody. Program do ní nahraješ přímo z prohlížeče.">
 <meta name="theme-color" content="#090c11">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Caltucalor – kapesní kalkulačka">
+<meta property="og:description" content="Grafy, zlomky, matice a obvody na ESP32-S3. Vyzkoušej ji přímo v prohlížeči a nainstaluj jedním kliknutím.">
+<meta property="og:url" content="https://wreze11.github.io/caltucalor/">
+<meta property="og:image" content="https://wreze11.github.io/caltucalor/img/nahled.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="cs_CZ">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="img/ikona.svg" type="image/svg+xml">
 <style>
   @font-face { font-family: "Inter"; font-weight: 400; font-display: swap; src: url("fonts/Inter-Regular.woff2") format("woff2"); }
@@ -116,8 +125,27 @@
     border-radius: 34px; border: 1px solid #2a3240;
     background: linear-gradient(160deg, #222a37 0%, #141922 45%, #0f131a 100%);
     box-shadow: 0 40px 80px rgba(0, 0, 0, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.06);
-    transform: rotate(-2deg);
+    outline: none;
   }
+  .device:focus-visible { box-shadow: 0 40px 80px rgba(0, 0, 0, 0.55), 0 0 0 3px color-mix(in srgb, var(--blue) 70%, transparent); }
+  .screen canvas { display: block; width: 100%; height: auto; aspect-ratio: 4 / 3; border-radius: 4px; image-rendering: pixelated; }
+  .screen canvas[hidden] { display: none; }
+  .screen.touch canvas { cursor: pointer; touch-action: none; -webkit-tap-highlight-color: transparent; }
+  .demo-bar {
+    display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 6px 12px;
+    width: min(100%, 372px); margin: 18px auto 0; font-size: 13.5px; color: var(--dim); text-align: center;
+  }
+  .demo-bar[hidden] { display: none; }
+  .live { display: inline-flex; align-items: center; gap: 7px; font-weight: 700; color: var(--accent); }
+  .live i { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); animation: pulse 1.6s ease-in-out infinite; }
+  @keyframes pulse { 0%, 100% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--accent) 60%, transparent); } 50% { box-shadow: 0 0 0 6px transparent; } }
+  .demo-bar button {
+    font: inherit; font-size: 13px; font-weight: 600; color: var(--text); cursor: pointer;
+    background: var(--surface); border: 1px solid var(--hairline); border-radius: 8px; padding: 4px 10px;
+  }
+  .demo-bar button:hover { background: var(--surface-hi); }
+  @media (hover: none) { .demo-bar .pc { display: none; } }
+  @media (hover: hover) { .demo-hint { order: 3; flex-basis: 100%; } }
   .device::after {
     content: "Caltucalor"; position: absolute; left: 0; right: 0; bottom: 8px; text-align: center;
     font-size: 11px; font-weight: 800; letter-spacing: 0.32em; text-transform: uppercase; color: #3b4556;
@@ -263,6 +291,18 @@
   .contact p { margin: 0; color: var(--dim); }
   .contact p b { color: var(--text); font-weight: 600; }
 
+  .feature img { cursor: zoom-in; }
+  .feature img:focus-visible { outline: 2px solid var(--blue); outline-offset: -2px; }
+  #lightbox {
+    width: min(92vw, 960px); max-width: none; padding: 0; overflow: hidden; color: var(--text);
+    background: var(--surface); border: 1px solid var(--hairline); border-radius: 18px; cursor: zoom-out;
+    box-shadow: 0 30px 90px rgba(0, 0, 0, 0.6);
+  }
+  #lightbox::backdrop { background: rgba(4, 6, 10, 0.82); backdrop-filter: blur(4px); }
+  #lightbox img { display: block; width: 100%; height: auto; image-rendering: pixelated; }
+  #lightbox p { margin: 0; padding: 14px 18px; color: var(--dim); }
+  #lightbox p b { color: var(--text); }
+
   footer { margin-top: 56px; border-top: 1px solid var(--hairline); color: var(--faint); font-size: 13.5px; padding: 20px 0 34px; }
   footer a { color: var(--dim); }
 
@@ -318,7 +358,7 @@
         <p class="eyebrow">Kapesní kalkulačka · ESP32-S3</p>
         <h1>Grafy, zlomky, matice a&nbsp;obvody. <em>V&nbsp;kapse.</em></h1>
         <p class="lead">Caltucalor má dva displeje: nahoře výsledky a grafy, dole dotykovou klávesnici.
-          Novou verzi do něj nahraješ přímo z prohlížeče – stačí USB-C kabel.</p>
+          Vyzkoušej si ho přímo tady a novou verzi do něj nahraješ z prohlížeče – stačí USB-C kabel.</p>
         <div class="cta">
           <a class="btn" href="#nainstalovat">Nainstalovat verzi 6.3</a>
           <a class="btn ghost" href="#historie">Co je nového</a>
@@ -329,9 +369,16 @@
           <li>Chrome nebo Edge</li>
         </ul>
       </div>
-      <div class="device" role="img" aria-label="Kalkulačka Caltucalor: nahoře displej s výsledky, dole dotyková klávesnice">
-        <div class="screen"><img src="img/displej.png" width="640" height="480" alt=""></div>
-        <div class="screen touch"><img src="img/klavesnice.png" width="640" height="480" alt=""></div>
+      <div class="demo-wrap">
+        <div class="device" id="demo" tabindex="0" aria-label="Kalkulačka Caltucalor: nahoře displej s výsledky, dole dotyková klávesnice">
+          <div class="screen"><img src="img/displej.png" width="640" height="480" alt=""><canvas id="demo-top" width="320" height="240" hidden></canvas></div>
+          <div class="screen touch"><img src="img/klavesnice.png" width="640" height="480" alt=""><canvas id="demo-kb" width="320" height="240" hidden></canvas></div>
+        </div>
+        <div class="demo-bar" id="demo-bar" hidden>
+          <span class="live"><i></i>Živá ukázka</span>
+          <span class="demo-hint">ťukej na klávesnici dole<span class="pc"> nebo piš na počítači</span></span>
+          <button type="button" id="demo-reset" title="Zapnout kalkulačku znovu">Znovu</button>
+        </div>
       </div>
     </div>
 
@@ -522,7 +569,8 @@
           <p>Derivace, integrály, statistika a vlastní proměnné; elektrotechnika (Ohmův zákon, RC a LC články,
             rezistor k LED, dělič, hledání kombinací odporů); polární grafy, tečny a plochy pod křivkou. Pak menu
             na dvě strany, rychlejší grafy bez ztráty kvality, číslo verze v Nastavení a tahle stránka s instalací
-            přímo z prohlížeče.</p></li>
+            přímo z prohlížeče. Na ní běží i živá ukázka: stejný kód kalkulačky jako v čipu, přeložený
+            do WebAssembly.</p></li>
         <li class="next"><span class="when">Dál</span><h3>Další verze</h3>
           <p>Vývoj pokračuje. Každá nová verze se objeví v <a href="#historie">Historii</a> a nainstaluje se
             odsud jedním kliknutím.</p></li>
@@ -554,7 +602,7 @@
           <ul>
             <li><b>Převod do C++</b> a nový kód: výpočty, grafy, vzhled, ovladač displeje, klávesnice</li>
             <li><b>Testy</b> a simulátor kalkulačky na počítači</li>
-            <li><b>Návody</b>, dokumentace a tahle stránka</li>
+            <li><b>Návody</b>, dokumentace a tahle stránka i s živou ukázkou</li>
             <li><b>Kontrola</b>, že se každá verze přeloží bez jediného varování</li>
           </ul>
         </div>
@@ -653,6 +701,8 @@
   </footer>
 </main>
 
+<dialog id="lightbox" aria-label="Zvětšený obrázek"><img alt=""><p></p></dialog>
+
 <script type="module" src="esp-web-tools/install-button.js"></script>
 <script>
   (function () {
@@ -677,6 +727,33 @@
     window.addEventListener("hashchange", function () { show(location.hash, true); });
     show(location.hash, location.hash !== "" && location.hash !== "#instalace");
 
+    // ---- obrázky v „Co umí“ jdou zvětšit ----
+    var box = document.getElementById("lightbox");
+    if (box && box.showModal) {
+      document.querySelectorAll(".feature img").forEach(function (img) {
+        img.tabIndex = 0;
+        function open() {
+          var big = box.querySelector("img"), cap = img.parentNode.querySelector("figcaption");
+          big.src = img.src;
+          big.alt = img.alt;
+          var p = box.querySelector("p");
+          p.textContent = "";
+          if (cap) {
+            var b = document.createElement("b");
+            b.textContent = cap.querySelector("b").textContent;
+            p.appendChild(b);
+            p.appendChild(document.createTextNode(" – " + cap.querySelector("span").textContent));
+          }
+          box.showModal();
+        }
+        img.addEventListener("click", open);
+        img.addEventListener("keydown", function (e) {
+          if (e.key === "Enter" || e.key === " ") { e.preventDefault(); open(); }
+        });
+      });
+      box.addEventListener("click", function () { box.close(); });
+    }
+
     // ---- historie: všechny / jen velké / jen malé ----
     var list = document.getElementById("updates");
     document.querySelectorAll(".filter button").forEach(function (btn) {
@@ -687,6 +764,131 @@
         });
       });
     });
+  })();
+
+  // ---- kalkulačka v prohlížeči: stejný kód jako v ESP32-S3, přeložený do WebAssembly ----
+  (function () {
+    var dev = document.getElementById("demo");
+    if (!dev || !window.WebAssembly || !window.IntersectionObserver || !window.Proxy) return;
+    var topC = document.getElementById("demo-top"), kbC = document.getElementById("demo-kb");
+    var bar = document.getElementById("demo-bar");
+    var topX = topC.getContext("2d"), kbX = kbC.getContext("2d");
+    var topImg = topX.createImageData(320, 240), kbImg = kbX.createImageData(320, 240);
+    // barvy displeje RGB565 -> RGBA
+    var lut = new Uint32Array(65536);
+    for (var v = 0; v < 65536; v++) {
+      var r = ((v >> 11) & 31) * 255 / 31 | 0, g = ((v >> 5) & 63) * 255 / 63 | 0, b = (v & 31) * 255 / 31 | 0;
+      lut[v] = (0xff000000 | (b << 16) | (g << 8) | r) >>> 0;
+    }
+    var mod = null, ex = null, mem = null, loading = false, running = false, onScreen = false;
+    var acc = 0, last = 0, tv = -1, kv = -1, down = false, steppedSinceDown = true;
+    function view() { return new DataView(mem.buffer); }
+    var wasi = {
+      fd_write: function (fd, iovs, n, nw) {
+        var d = view(), t = 0;
+        for (var i = 0; i < n; i++) t += d.getUint32(iovs + 8 * i + 4, true);
+        d.setUint32(nw, t, true);
+        return 0;
+      },
+      fd_close: function () { return 0; },
+      fd_seek: function () { return 70; },
+      proc_exit: function (c) { throw new Error("exit " + c); }
+    };
+    var imports = { wasi_snapshot_preview1: new Proxy(wasi, { get: function (t, k) { return t[k] || function () { return 52; }; } }) };
+
+    function start() {
+      return WebAssembly.instantiate(mod, imports).then(function (inst) {
+        ex = inst.exports;
+        mem = ex.memory;
+        if (ex._initialize) ex._initialize();
+        ex.demo_begin();
+        tv = kv = -1;
+        acc = 0;
+      });
+    }
+    function blit(ctx, img, ptr) {
+      var src = new Uint16Array(mem.buffer, ptr, 76800), dst = new Uint32Array(img.data.buffer);
+      for (var i = 0; i < 76800; i++) dst[i] = lut[src[i]];
+      ctx.putImageData(img, 0, 0);
+    }
+    function frame(now) {
+      if (running && onScreen && !document.hidden) {
+        acc += Math.min(100, now - last);
+        var ms = Math.floor(acc / 4) * 4;
+        acc -= ms;
+        if (ms > 0) { ex.demo_step(ms); steppedSinceDown = true; }
+        var t = ex.demo_top_version(), k = ex.demo_kb_version();
+        if (t !== tv) { tv = t; blit(topX, topImg, ex.demo_top()); }
+        if (k !== kv) { kv = k; blit(kbX, kbImg, ex.demo_kb()); }
+      }
+      last = now;
+      requestAnimationFrame(frame);
+    }
+    function load() {
+      loading = true;
+      var url = "demo/caltucalor.wasm";
+      function slow() { return fetch(url).then(function (r) { return r.arrayBuffer(); }).then(WebAssembly.compile); }
+      var p = WebAssembly.compileStreaming ? WebAssembly.compileStreaming(fetch(url)).catch(slow) : slow();
+      p.then(function (m) { mod = m; return start(); }).then(function () {
+        dev.querySelectorAll("img").forEach(function (i) { i.style.display = "none"; });
+        topC.hidden = false;
+        kbC.hidden = false;
+        bar.hidden = false;
+        running = true;
+        dev.setAttribute("aria-label", "Živá ukázka kalkulačky Caltucalor – ťukej na klávesnici dole");
+      }).catch(function (e) { console.warn("Ukázka kalkulačky se nespustila:", e); });
+    }
+    new IntersectionObserver(function (es) {
+      onScreen = es[0].isIntersecting;
+      if (onScreen && !loading) load();
+    }).observe(dev);
+
+    // ťuknutí na dotykový displej (myš nebo prst)
+    function pos(e) {
+      var rc = kbC.getBoundingClientRect();
+      return [Math.max(0, Math.min(319, Math.floor((e.clientX - rc.left) / rc.width * 320))),
+              Math.max(0, Math.min(239, Math.floor((e.clientY - rc.top) / rc.height * 240)))];
+    }
+    kbC.addEventListener("pointerdown", function (e) {
+      if (!running) return;
+      e.preventDefault();
+      dev.focus({ preventScroll: true });
+      try { kbC.setPointerCapture(e.pointerId); } catch (err) {}
+      down = true;
+      steppedSinceDown = false;
+      var p = pos(e);
+      ex.demo_touch(1, p[0], p[1]);
+    });
+    kbC.addEventListener("pointermove", function (e) {
+      if (!down) return;
+      var p = pos(e);
+      ex.demo_touch(1, p[0], p[1]);
+    });
+    function up(e) {
+      if (!down) return;
+      down = false;
+      if (!steppedSinceDown) ex.demo_step(20); // (velmi krátké ťuknutí: klávesa se musí stihnout zmáčknout)
+      var p = pos(e);
+      ex.demo_touch(0, p[0], p[1]);
+    }
+    kbC.addEventListener("pointerup", up);
+    kbC.addEventListener("pointercancel", up);
+
+    // na počítači jde psát i na klávesnici (když je kalkulačka vybraná)
+    var KEYS = { Enter: "<enter>", Backspace: "<del>", Escape: "<ac>", Delete: "<ac>", ArrowLeft: "<left>", ArrowRight: "<right>" };
+    dev.addEventListener("keydown", function (e) {
+      if (!running || e.ctrlKey || e.metaKey || e.altKey) return;
+      var t = KEYS[e.key];
+      if (!t && e.key.length === 1 && /[0-9a-zA-Z+\-*\/^().,!%=<>]/.test(e.key)) t = e.key;
+      if (!t) return;
+      e.preventDefault();
+      var buf = new Uint8Array(mem.buffer, ex.demo_token_buf(), 64), s = new TextEncoder().encode(t);
+      buf.fill(0);
+      buf.set(s.subarray(0, 63));
+      ex.demo_token();
+    });
+    document.getElementById("demo-reset").addEventListener("click", function () { if (mod) start(); });
+    requestAnimationFrame(function (t) { last = t; requestAnimationFrame(frame); });
   })();
 </script>
 </body>
