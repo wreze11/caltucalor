@@ -137,23 +137,14 @@
   .num { width: 32px; height: 32px; border-radius: 50%; display: grid; place-items: center; background: var(--surface-hi); color: var(--accent); font-weight: 800; }
   .step h3 { margin: 4px 0 12px; font-size: 17px; }
   .hint { color: var(--faint); font-size: 14px; margin: 10px 0 0; }
-  .choices { display: flex; flex-wrap: wrap; gap: 12px; border: 0; margin: 0; padding: 0; }
-  .choice { position: relative; flex: 1 1 240px; }
-  .choice input { position: absolute; opacity: 0; inset: 0; margin: 0; cursor: pointer; }
-  .choice span {
-    position: relative; display: block; height: 100%; padding: 14px 46px 14px 16px; border-radius: 12px; cursor: pointer;
-    background: var(--bg-2); border: 1.5px solid var(--hairline); transition: border-color .15s, background .15s;
+  .board {
+    display: flex; align-items: center; gap: 14px; margin: 0 0 8px; padding: 14px 16px; border-radius: 12px;
+    background: color-mix(in srgb, var(--accent) 8%, var(--bg-2)); border: 1px solid color-mix(in srgb, var(--accent) 35%, var(--hairline));
   }
-  .choice span::after {
-    content: ""; position: absolute; right: 16px; top: 50%; width: 18px; height: 18px; margin-top: -9px;
-    border-radius: 50%; border: 2px solid var(--faint);
-  }
-  .choice b { display: block; font-size: 16px; }
-  .choice small { display: block; color: var(--dim); font-size: 13.5px; margin-top: 2px; }
-  .choice input:hover + span { border-color: color-mix(in srgb, var(--accent) 50%, var(--hairline)); }
-  .choice input:checked + span { border-color: var(--accent); background: color-mix(in srgb, var(--accent) 11%, var(--bg-2)); }
-  .choice input:checked + span::after { border-color: var(--accent); background: radial-gradient(circle, var(--accent) 0 4px, transparent 4.6px); }
-  .choice input:focus-visible + span { outline: 2px solid var(--blue); outline-offset: 2px; }
+  .board-ic { width: 40px; height: 40px; flex: none; color: var(--accent); }
+  .board b { display: block; font-size: 16.5px; }
+  .board span { display: block; color: var(--dim); font-size: 14px; }
+  .step p.text { margin: 0; color: var(--dim); }
   .install { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 18px; }
   .chosen { color: var(--dim); font-size: 14.5px; }
   .chosen b { color: var(--text); font-weight: 600; }
@@ -228,10 +219,11 @@
   .timeline li.next .when { color: var(--violet); }
   .timeline h3 { margin: 2px 0 6px; font-size: 20px; }
   .timeline p { margin: 0; color: var(--dim); max-width: 46em; }
-  .who { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .who { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
   .who .panel h3 { display: flex; align-items: center; gap: 10px; }
   .avatar { width: 34px; height: 34px; border-radius: 10px; display: grid; place-items: center; font-weight: 800; font-size: 15px; color: var(--accent-ink); background: var(--accent); flex: none; }
   .avatar.c { background: var(--violet); color: #160c33; }
+  .avatar.v { background: var(--blue); color: #071a33; }
   .pipeline { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; align-items: stretch; }
   .stage { position: relative; background: var(--surface); border: 1px solid var(--hairline); border-radius: var(--radius); padding: 16px 16px 14px; margin-right: 26px; }
   .stage:last-child { margin-right: 0; }
@@ -260,7 +252,13 @@
   .tags li { font-size: 13.5px; color: var(--text); background: var(--surface-hi); border: 1px solid var(--hairline); border-radius: 999px; padding: 5px 12px; }
   .highlights { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 34px; }
   .highlights p { margin: 0; color: var(--dim); font-size: 15px; }
-  .contact { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; margin-top: 16px; padding: 22px 24px; }
+  .projects { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .project { background: var(--surface); border: 1px solid var(--hairline); border-radius: var(--radius); padding: 18px 20px; transition: transform .2s, border-color .2s; }
+  .project:hover { transform: translateY(-3px); border-color: color-mix(in srgb, var(--blue) 40%, var(--hairline)); }
+  .project .kicker { margin: 0 0 8px; font-size: 11.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--blue); }
+  .project h3 { margin: 0 0 6px; font-size: 18px; }
+  .project p:last-child { margin: 0; color: var(--dim); font-size: 15px; }
+  .contact { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; margin-top: 44px; padding: 22px 24px; }
   .contact h3 { margin: 0 0 4px; font-size: 18px; }
   .contact p { margin: 0; color: var(--dim); }
   .contact p b { color: var(--text); font-weight: 600; }
@@ -271,8 +269,9 @@
   @media (max-width: 860px) {
     .hero { grid-template-columns: 1fr; gap: 34px; padding-top: 32px; }
     .device { transform: none; width: min(100%, 340px); }
-    .features { grid-template-columns: 1fr 1fr; }
+    .features, .projects { grid-template-columns: 1fr 1fr; }
     .stats { grid-template-columns: 1fr 1fr; }
+    .who { grid-template-columns: 1fr; }
     .pipeline { grid-template-columns: 1fr; gap: 26px; }
     .stage { margin-right: 0; }
     .stage:not(:last-child)::after { content: "↓"; right: auto; left: 50%; top: auto; bottom: -24px; transform: translateX(-50%); }
@@ -282,7 +281,7 @@
     .brand span, .bar .pill { display: none; }
     nav.tabs a { padding: 8px 10px; font-size: 14.5px; }
     .cols, .who, .checks, .author, .highlights { grid-template-columns: 1fr; }
-    .features { grid-template-columns: 1fr; }
+    .features, .projects { grid-template-columns: 1fr; }
     .card { padding: 22px 16px; }
     .major { padding: 20px 18px 18px; }
     .major .big { position: static; width: auto; text-align: left; font-size: 46px; margin-bottom: 6px; }
@@ -342,25 +341,30 @@
         <p class="sub">Když už v kalkulačce Caltucalor je, tohle ji jen aktualizuje. Co je nového, najdeš
           v <a href="#historie">historii aktualizací</a>.</p>
 
+        <div class="board">
+          <svg class="board-ic" viewBox="0 0 40 40" aria-hidden="true">
+            <rect x="9" y="9" width="22" height="22" rx="4" fill="none" stroke="currentColor" stroke-width="2.2"/>
+            <rect x="15" y="15" width="10" height="10" rx="2" fill="currentColor" opacity=".35"/>
+            <path d="M15 4v5M20 4v5M25 4v5M15 31v5M20 31v5M25 31v5M4 15h5M4 20h5M4 25h5M31 15h5M31 20h5M31 25h5"
+              stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+          </svg>
+          <div><b>Seeed XIAO ESP32S3</b>
+            <span>displej ST7789 240 × 320 · zapojení podle návodu k projektu</span></div>
+        </div>
+
         <div class="step">
           <div class="num">1</div>
           <div>
-            <h3>Deska</h3>
-            <fieldset class="choices">
-              <legend class="sr">Deska</legend>
-              <label class="choice"><input type="radio" name="board" value="xiao" checked>
-                <span><b>XIAO ESP32S3</b><small>Seeed Studio, malá deska s USB-C</small></span></label>
-              <label class="choice"><input type="radio" name="board" value="devkitc">
-                <span><b>ESP32-S3 DevKitC</b><small>větší deska (16 MB flash, PSRAM)</small></span></label>
-            </fieldset>
-            <p class="hint">Displej ST7789 240 × 320 (SPI), zapojený podle návodu k projektu.</p>
+            <h3>Připoj kalkulačku</h3>
+            <p class="text">USB-C kabel zapoj přímo do desky XIAO (ne do nabíječky). Zavři Serial Monitor a jiné
+              programy, které můžou mít port otevřený.</p>
           </div>
         </div>
 
         <div class="step">
           <div class="num">2</div>
           <div>
-            <h3>Připoj kalkulačku a nainstaluj</h3>
+            <h3>Nainstaluj</h3>
             <div class="install">
               <esp-web-install-button id="installer" manifest="firmware/6.3/xiao/manifest.json">
                 <button slot="activate" class="btn">Nainstalovat verzi 6.3</button>
@@ -368,10 +372,8 @@
                   Otevři stránku na počítači v <b>Chrome</b> nebo <b>Edge</b>.</span>
                 <span slot="not-allowed" class="note">Instalace funguje jen na stránce s adresou <b>https://</b>.</span>
               </esp-web-install-button>
-              <div class="chosen" id="chosen">Vybráno: <b>XIAO ESP32S3</b> · displej ST7789</div>
+              <div class="chosen">asi minuta · uložené grafy zůstanou</div>
             </div>
-            <p class="hint">Kabel zapoj do USB-C přímo na desce kalkulačky (ne do nabíječky) a zavři Serial Monitor
-              a jiné programy, které můžou mít port otevřený.</p>
           </div>
         </div>
       </div>
@@ -453,13 +455,13 @@
       <li class="upd minor"><div class="row"><span class="ver">5.3</span><span class="badge">Malá aktualizace</span><span class="name">Oprava grafů</span><time>3. 11. 2026</time></div><ul><li>Implicitní grafy bez děr a výpadků (např. tan(x)·y = 5) a lepší husté oblasti.</li></ul></li>
       <li class="upd minor"><div class="row"><span class="ver">5.2</span><span class="badge">Malá aktualizace</span><span class="name">Čas t a Historie</span><time>2. 11. 2026</time></div><ul><li>Animace grafů s časem t: spustit, pauza, rychlost, rozsah, postupné kreslení parametrických křivek.</li><li>Historie vzorců – starý vzorec znovu bez psaní; podržení ◀ ▶ ⌫ opakuje.</li></ul></li>
       <li class="upd minor"><div class="row"><span class="ver">5.1</span><span class="badge">Malá aktualizace</span><span class="name">Oprava displeje</span><time>28. 10. 2026</time></div><ul><li>Displej bez pinu podsvícení po vypnutí nesvítí bíle, ale zůstane černý v úsporném režimu.</li></ul></li>
-      <li class="upd major"><div class="big">5<small>verze</small></div><span class="badge">Velká aktualizace</span><h3>Klávesnice</h3><time>27. 10. 2026</time><ul><li>Klávesnici kreslí přímo kalkulačka – zkušebně se zobrazovala v mobilu přes Wi-Fi, dnes je na dotykovém displeji.</li><li>Psaný řádek s kurzorem a náhledem výsledku dole na displeji.</li><li>Parametrické grafy x(t), y(t) a mocniny funkcí jako sin³(t).</li><li>Každý režim má svou hlavní stránku klávesnice, exponent se píše nahoru, bez automatických závorek.</li></ul></li>
+      <li class="upd major"><div class="big">5<small>verze</small></div><span class="badge">Velká aktualizace</span><h3>Klávesnice</h3><time>27. 10. 2026</time><ul><li>Klávesnici kreslí přímo kalkulačka – zkušebně se zobrazovala v mobilu přes Wi-Fi.</li><li>Psaný řádek s kurzorem a náhledem výsledku dole na displeji.</li><li>Parametrické grafy x(t), y(t) a mocniny funkcí jako sin³(t).</li><li>Každý režim má svou hlavní stránku klávesnice, exponent se píše nahoru, bez automatických závorek.</li></ul></li>
       <li class="upd minor"><div class="row"><span class="ver">4.2</span><span class="badge">Malá aktualizace</span><span class="name">Nové zadávání matic</span><time>27. 10. 2026</time></div><ul><li>Matice se píšou po řádcích do mřížky, přehled všech matic, rychlé akce číslem a úprava jednoho prvku.</li></ul></li>
       <li class="upd minor"><div class="row"><span class="ver">4.1</span><span class="badge">Malá aktualizace</span><span class="name">Ikony</span><time>27. 10. 2026</time></div><ul><li>Každý režim má ikonu v menu i v liště nahoře; menu jako seznam nebo mřížka.</li></ul></li>
       <li class="upd major"><div class="big">4<small>verze</small></div><span class="badge">Velká aktualizace</span><h3>Režimy</h3><time>27. 10. 2026</time><ul><li>Menu po zapnutí s režimy Výpočty, Grafy, Komplexní čísla, Matice, Rovnice, Nastavení a Nápověda.</li><li>Komplexní čísla, matice A–D, rovnice se všemi kořeny a soustavy lineárních rovnic.</li><li>Víc grafů najednou, zoom, posun, hodnota v bodě, kořeny a průsečíky.</li><li>Vlastní ovladač displeje s DMA na 80 MHz, kreslení na druhém jádře, úspora energie a nastavení, která se pamatují.</li></ul></li>
       <li class="upd major"><div class="big">3<small>verze</small></div><span class="badge">Velká aktualizace</span><h3>Nový vzhled</h3><time>26. 10. 2026</time><ul><li>Nové GUI s vyhlazeným písmem s háčky, karta s výsledkem, symboly √ π × a čísla po trojicích.</li><li>Animace: úvodní logo, posun historie, zatřesení při chybě, odkrývání grafu.</li><li>Grafy funkcí po sloupcích pixelů, operátor % (modulo), maximální výkon procesoru a displeje.</li></ul></li>
       <li class="upd major"><div class="big">2<small>verze</small></div><span class="badge">Velká aktualizace</span><h3>Grafy</h3><time>26. 10. 2026</time><ul><li>Grafy funkcí i vztahů x a y (kružnice, nerovnice, oblasti) a vlastní rozsah grafu.</li><li>Opravy výpočtů oproti původní kalkulačce (mocniny, záporná čísla, velká čísla), psaní znaků √ π ².</li><li>Tmavší vzhled, nápověda na displeji a příkaz invert pro displeje s obrácenými barvami.</li></ul></li>
-      <li class="upd major"><div class="big">1<small>verze</small></div><span class="badge">Velká aktualizace</span><h3>První verze</h3><time>25. 10. 2026</time><ul><li>Kalkulačka Caltucalor z počítače přepsaná tak, aby běžela přímo na ESP32-S3 s barevným displejem.</li><li>Příklady se zkušebně posílaly přes Bluetooth nebo z počítače přes USB, výsledek se ukázal na displeji.</li><li>Výsledky ověřené proti původní kalkulačce.</li></ul></li>
+      <li class="upd major"><div class="big">1<small>verze</small></div><span class="badge">Velká aktualizace</span><h3>První verze</h3><time>25. 10. 2026</time><ul><li>Vojtova kalkulačka Caltucalor pro počítač (C#) přepsaná tak, aby běžela přímo na ESP32-S3 s barevným displejem.</li><li>Příklady se zkušebně posílaly přes Bluetooth nebo z počítače přes USB, výsledek se ukázal na displeji.</li><li>Výsledky ověřené proti původní kalkulačce.</li></ul></li>
     </ol>
   </section>
 
@@ -480,8 +482,9 @@
     </div>
 
     <section class="block story">
-      <p>Caltucalor začal jako kalkulačka pro počítač, kterou wreze napsal v C#. Na konci října 2026 z ní začala
-        vznikat skutečná kapesní kalkulačka na čipu ESP32-S3 – s vlastním displejem, klávesnicí a baterií.</p>
+      <p>Caltucalor začal jako kalkulačka pro počítač v C#. Napsal ji wrezeho kamarád <strong>Vojta</strong>,
+        který s projektem i pomáhal. Na konci října 2026 z ní začala vznikat skutečná kapesní kalkulačka na čipu
+        ESP32-S3 – s vlastním displejem, klávesnicí a baterií.</p>
       <p>Práce je rozdělená jasně: wreze vymýšlí, co má kalkulačka umět, vybírá a zapojuje hardware a každou
         verzi zkouší na skutečné kalkulačce. Claude píše kód, testy a dokumentaci a hlídá, aby každá verze
         počítala přesně jako ta původní.</p>
@@ -492,7 +495,7 @@
       <p class="sub">Od přepisu výpočtů po instalaci z webu.</p>
       <ol class="timeline">
         <li><span class="when">25. 10. 2026</span><h3>Z počítače do čipu</h3>
-          <p>Výpočetní jádro kalkulačky z C# jsme přepsali do C++, aby běželo přímo na čipu ESP32-S3. Že počítá
+          <p>Výpočetní jádro Vojtovy kalkulačky z C# jsme přepsali do C++, aby běželo přímo na čipu ESP32-S3. Že počítá
             stejně jako originál, hlídá test: 1,2 milionu náhodných příkladů se spočítá v obou verzích a výsledky
             se porovnají – dodnes bez jediného rozdílu. První verze ukazovala výsledky na barevném displeji
             a příklady dostávala zkušebně přes Bluetooth nebo z počítače.</p></li>
@@ -533,10 +536,17 @@
         <div class="panel">
           <h3><span class="avatar">W</span>wreze</h3>
           <ul>
-            <li><b>Nápad a původní kalkulačka</b> v C# pro počítač</li>
+            <li><b>Nápad</b> udělat z Caltucaloru kapesní kalkulačku a <b>rozhodování</b>, co má umět a jak má vypadat</li>
             <li><b>Hardware:</b> výběr a zapojení desek ESP32-S3 a XIAO, displejů, baterie a nabíječky</li>
             <li><b>Zkoušení</b> každé verze na skutečné kalkulačce a hlášení, co nefunguje</li>
-            <li><b>Rozhodování</b>, co má kalkulačka umět a jak má vypadat</li>
+          </ul>
+        </div>
+        <div class="panel">
+          <h3><span class="avatar v">V</span>Vojta</h3>
+          <ul>
+            <li><b>Původní Caltucalor</b> – kalkulačka v C# pro počítač, ze které všechno vzešlo</li>
+            <li>Její výsledky jsou <b>měřítkem</b>, se kterým se porovnává každá nová verze</li>
+            <li><b>Pomoc</b> s projektem</li>
           </ul>
         </div>
         <div class="panel">
@@ -571,7 +581,7 @@
         <div class="check"><i>✓</i><div><b>Náhodné ťukání</b><span>Tisíce náhodných kláves a kontrola, že displej ukazuje přesně to, co má.</span></div></div>
         <div class="check"><i>✓</i><div><b>Otisky grafů</b><span>32 testovacích grafů se musí po každé optimalizaci nakreslit pixel po pixelu stejně.</span></div></div>
         <div class="check"><i>✓</i><div><b>Stovky testů výpočtů</b><span>Zlomky, matematika, grafy, obvody, psaní na řádek.</span></div></div>
-        <div class="check"><i>✓</i><div><b>Bez varování</b><span>Program se pro obě desky přeloží bez jediného varování překladače.</span></div></div>
+        <div class="check"><i>✓</i><div><b>Bez varování</b><span>Program se přeloží bez jediného varování překladače.</span></div></div>
       </div>
     </section>
   </section>
@@ -590,26 +600,46 @@
         <a href="https://github.com/wreze11">github.com/wreze11</a>
       </div>
       <div class="story">
-        <p>wreze napsal původní kalkulačku Caltucalor v C# pro počítač – a teď z ní staví vlastní kapesní
-          kalkulačku. Caltucalor je jeho projekt od nápadu přes zapojení až po zkoušení každé verze.</p>
-        <p>Sám vybírá a zapojuje hardware: desku ESP32-S3 (teď malou XIAO), displej s výsledky, dotykový displej
-          s klávesnicí i baterii s nabíječkou a vypínačem. Každou verzi zkouší na skutečné kalkulačce a rozhoduje,
-          co v ní bude dál.</p>
-        <ul class="tags" aria-label="Projekt">
-          <li>ESP32-S3</li><li>C#</li><li>C++</li><li>PlatformIO</li><li>elektronika</li>
+        <p>wreze studuje návrh čipů a ve volném čase staví vlastní zařízení s ESP32-S3. Baví ho elektronika,
+          hardwarové projekty a technické pokusy – zjistit, jak věci fungují uvnitř, a pak je přimět dělat
+          něco nového.</p>
+        <p>Caltucalor je jeho projekt od nápadu přes zapojení až po zkoušení každé verze. Základem je kalkulačka
+          pro počítač, kterou v C# napsal jeho kamarád <strong>Vojta</strong> – a s projektem mu i pomáhal.</p>
+        <p>A když zrovna nepájí, létá vesmírem v No Man's Sky.</p>
+        <ul class="tags" aria-label="Čím se zabývá">
+          <li>ESP32-S3</li><li>PlatformIO</li><li>C++</li><li>elektronika</li><li>návrh čipů</li><li>Unreal Engine</li>
         </ul>
       </div>
     </div>
     <div class="highlights">
       <div class="panel"><h3>Původní Caltucalor</h3>
-        <p>Kalkulačka pro počítač v C#, ze které všechno začalo. Její výsledky jsou dodnes měřítkem,
-          se kterým se každá nová verze porovnává.</p></div>
+        <p>Kalkulačku pro počítač v C# napsal <strong>Vojta</strong>. Její výsledky jsou dodnes měřítkem,
+          se kterým se porovnává každá nová verze.</p></div>
       <div class="panel"><h3>Hardware</h3>
         <p>Deska XIAO ESP32S3, displej s výsledky, dotykový displej s klávesnicí, baterie s nabíječkou
           TP4056 a vypínač.</p></div>
       <div class="panel"><h3>Zkoušení</h3>
         <p>Nové verze zkouší na skutečné kalkulačce a hlásí, co je potřeba opravit nebo přidat.</p></div>
     </div>
+    <section class="block">
+      <h2>Další projekty</h2>
+      <p class="sub">Caltucalor není první věc, kterou wreze s ESP32 postavil.</p>
+      <div class="projects">
+        <article class="project"><p class="kicker">ESP32-S3 · I2S · Gemini API</p><h3>Hlasový asistent v češtině</h3>
+          <p>Mikrofon a reproduktor na ESP32-S3: mluví se na tlačítko, odpovídá přes Gemini a pamatuje si rozhovor.</p></article>
+        <article class="project"><p class="kicker">ST7789 · WebSocket · JPEG</p><h3>YouTube na malém displeji</h3>
+          <p>Video z počítače na displeji 240 × 320 přes Wi-Fi – Python server, dekódování JPEG a obě jádra procesoru.</p></article>
+        <article class="project"><p class="kicker">OLED · ILI9341</p><h3>Bad Apple!!</h3>
+          <p>Klasika mezi bastlíři: černobílé video na OLED 128 × 64, později na barevném displeji s plynulým zvětšením.</p></article>
+        <article class="project"><p class="kicker">TLSR8359 · e-ink</p><h3>Elektronická cenovka po svém</h3>
+          <p>E-ink cenovka Hanshow s odemčeným čipem a vlastním firmwarem, nahraným přes můstek z ESP32-S3.</p></article>
+        <article class="project"><p class="kicker">ESP32-S3 · NAT</p><h3>Wi-Fi opakovač</h3>
+          <p>ESP32-S3 jako opakovač a hotspot, který zvládne i video v HD.</p></article>
+        <article class="project"><p class="kicker">Unreal Engine</p><h3>Hra s kamarádem</h3>
+          <p>2D hra v Unreal Engine, na které pracují spolu najednou přes Multi-User Editing.</p></article>
+      </div>
+    </section>
+
     <div class="card contact">
       <div><h3>Stránka na GitHubu</h3>
         <p>Tahle stránka i programy pro instalaci jsou v repozitáři <b>wreze11/caltucalor</b>.</p></div>
@@ -618,7 +648,7 @@
   </section>
 
   <footer>
-    Caltucalor 6.3 · © 2026 wreze · instalace přes <a href="https://github.com/esphome/esp-web-tools">ESP Web Tools</a>
+    Caltucalor 6.3 · © 2026 wreze · původní Caltucalor v C#: Vojta · instalace přes <a href="https://github.com/esphome/esp-web-tools">ESP Web Tools</a>
     (Apache 2.0) · písmo <a href="fonts/LICENSE-Inter.txt">Inter</a> (SIL OFL 1.1)
   </footer>
 </main>
@@ -646,31 +676,6 @@
     }
     window.addEventListener("hashchange", function () { show(location.hash, true); });
     show(location.hash, location.hash !== "" && location.hash !== "#instalace");
-
-    // ---- výběr desky ----
-    var VERSION = "6.3";
-    var NAMES = { xiao: "XIAO ESP32S3", devkitc: "ESP32-S3 DevKitC" };
-    var installer = document.getElementById("installer");
-    var chosen = document.getElementById("chosen");
-    function board() {
-      var el = document.querySelector('input[name="board"]:checked');
-      return el ? el.value : "xiao";
-    }
-    function update(save) {
-      var b = board();
-      installer.setAttribute("manifest", "firmware/" + VERSION + "/" + b + "/manifest.json");
-      chosen.innerHTML = "Vybráno: <b>" + NAMES[b] + "</b> · displej ST7789";
-      if (save) { try { localStorage.setItem("caltucalor-deska", b); } catch (e) {} }
-    }
-    try {
-      var saved = localStorage.getItem("caltucalor-deska");
-      var el = saved && document.querySelector('input[name="board"][value="' + saved + '"]');
-      if (el) el.checked = true;
-    } catch (e) {}
-    document.querySelectorAll('input[name="board"]').forEach(function (el) {
-      el.addEventListener("change", function () { update(true); });
-    });
-    update(false);
 
     // ---- historie: všechny / jen velké / jen malé ----
     var list = document.getElementById("updates");
