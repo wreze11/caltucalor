@@ -187,6 +187,46 @@
   .panel li { margin: 0 0 9px; }
   .panel li b { color: var(--text); font-weight: 600; }
 
+  /* výběr verze programu (dotyková klávesnice / klávesnice v mobilu) */
+  .variants { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 0; padding: 0; border: 0; min-width: 0; }
+  .variant {
+    position: relative; display: block; cursor: pointer; padding: 16px 18px 16px 50px; border-radius: 14px;
+    background: var(--bg-2); border: 1px solid var(--hairline); transition: border-color .15s, background .15s;
+  }
+  .variant:hover { border-color: color-mix(in srgb, var(--accent) 30%, var(--hairline)); }
+  .variant input { position: absolute; left: 18px; top: 19px; width: 18px; height: 18px; margin: 0; accent-color: var(--accent); cursor: pointer; }
+  .variant:focus-within { outline: 2px solid var(--blue); outline-offset: 2px; }
+  .variant.on { border-color: color-mix(in srgb, var(--accent) 60%, var(--hairline)); background: color-mix(in srgb, var(--accent) 8%, var(--bg-2)); }
+  .variant .name { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 10px; font-weight: 700; font-size: 16.5px; }
+  .variant .rec {
+    font-size: 11.5px; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; color: var(--accent);
+    border: 1px solid color-mix(in srgb, var(--accent) 45%, transparent); border-radius: 999px; padding: 1px 8px;
+  }
+  .variant .desc { display: block; color: var(--dim); font-size: 14.5px; margin-top: 4px; }
+  .variant .desc b { color: var(--text); font-weight: 600; }
+  .variant .tags { margin-top: 10px; }
+  .variant .tags li { font-size: 12.5px; padding: 2px 9px; }
+
+  /* návod v PDF */
+  .guide {
+    display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 28px; align-items: center; overflow: hidden;
+    background: var(--surface); border: 1px solid var(--hairline); border-radius: var(--radius); padding: 28px;
+  }
+  .guide h2 { margin: 0 0 8px; font-size: 26px; }
+  .guide p { color: var(--dim); margin: 0 0 20px; }
+  .guide .cta { margin: 0; align-items: center; }
+  .guide .size { color: var(--faint); font-size: 14px; }
+  .pages { position: relative; display: block; aspect-ratio: 4 / 3; }
+  .pages img {
+    position: absolute; width: 44%; height: auto; border-radius: 6px; background: #fff;
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.5); transition: transform .25s;
+  }
+  .pages img:nth-child(1) { left: 2%; top: 9%; transform: rotate(-7deg); }
+  .pages img:nth-child(2) { left: 28%; top: 2%; z-index: 1; }
+  .pages img:nth-child(3) { left: 54%; top: 9%; transform: rotate(7deg); }
+  .pages:hover img:nth-child(1) { transform: rotate(-9deg) translateX(-4%); }
+  .pages:hover img:nth-child(3) { transform: rotate(9deg) translateX(4%); }
+
   /* ---------- co umí ---------- */
   .features { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
   .feature { margin: 0; background: var(--surface); border: 1px solid var(--hairline); border-radius: var(--radius); overflow: hidden; transition: transform .2s, border-color .2s; }
@@ -318,6 +358,8 @@
     .pipeline { grid-template-columns: 1fr; gap: 26px; }
     .stage { margin-right: 0; }
     .stage:not(:last-child)::after { content: "↓"; right: auto; left: 50%; top: auto; bottom: -24px; transform: translateX(-50%); }
+    .guide { grid-template-columns: 1fr; }
+    .pages { max-width: 420px; width: 100%; margin: 0 auto; }
   }
   @media (max-width: 680px) {
     .bar .wrap { gap: 10px; }
@@ -326,6 +368,8 @@
     .cols, .who, .checks, .author, .highlights { grid-template-columns: 1fr; }
     .features, .projects { grid-template-columns: 1fr; }
     .card { padding: 22px 16px; }
+    .variants { grid-template-columns: 1fr; }
+    .guide { padding: 22px 16px; }
     .major { padding: 20px 18px 18px; }
     .major .big { position: static; width: auto; text-align: left; font-size: 46px; margin-bottom: 6px; }
     .major .big small { display: inline; margin-left: 8px; }
@@ -348,7 +392,7 @@
       <a href="#vyvoj">Vývoj</a>
       <a href="#autor">O autorech</a>
     </nav>
-    <div class="pill">verze 6.3</div>
+    <div class="pill">verze 7</div>
   </div>
 </header>
 
@@ -361,9 +405,11 @@
         <p class="eyebrow">Kapesní kalkulačka · ESP32-S3</p>
         <h1>Grafy, zlomky, matice a&nbsp;obvody. <em>V&nbsp;kapse.</em></h1>
         <p class="lead">Caltucalor má dva displeje: nahoře výsledky a grafy, dole dotykovou klávesnici.
-          Vyzkoušej si ho přímo tady a novou verzi do něj nahraješ z prohlížeče – stačí USB-C kabel.</p>
+          Nebo jen jeden a klávesnici v mobilu – verzi si vybereš při instalaci. Vyzkoušej si ho přímo tady
+          a program do něj nahraješ z prohlížeče – stačí USB-C kabel.</p>
         <div class="cta">
-          <a class="btn" href="#nainstalovat">Nainstalovat verzi 6.3</a>
+          <a class="btn" href="#nainstalovat">Nainstalovat verzi 7</a>
+          <a class="btn ghost" href="#navod">Návod v PDF</a>
           <a class="btn ghost" href="#historie">Co je nového</a>
         </div>
         <ul class="facts">
@@ -387,7 +433,7 @@
 
     <section class="block" id="nainstalovat">
       <div class="card">
-        <h2>Instalace verze 6.3</h2>
+        <h2>Instalace verze 7</h2>
         <p class="sub">Když už v kalkulačce Caltucalor je, tohle ji jen aktualizuje. Co je nového, najdeš
           v <a href="#historie">historii aktualizací</a>.</p>
 
@@ -399,11 +445,35 @@
               stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
           </svg>
           <div><b>Seeed XIAO ESP32S3</b>
-            <span>displej ST7789 240 × 320 · zapojení podle návodu k projektu</span></div>
+            <span>hlavní displej ST7789 240 × 320 · zapojení obou verzí je v <a href="#navod">návodu</a></span></div>
         </div>
 
         <div class="step">
           <div class="num">1</div>
+          <div>
+            <h3>Vyber verzi</h3>
+            <fieldset class="variants" id="variants">
+              <legend class="sr">Verze programu</legend>
+              <label class="variant on">
+                <input type="radio" name="varianta" value="dotyk" data-name="Dotyková klávesnice" checked>
+                <span class="name">Dotyková klávesnice <span class="rec">doporučená</span></span>
+                <span class="desc">Dva displeje – dole dotyková klávesnice. Wi-Fi je vypnutá, mobil není potřeba.</span>
+                <ul class="tags"><li>2 displeje</li><li>bez Wi-Fi</li><li>kapacitní dotyk</li></ul>
+              </label>
+              <label class="variant">
+                <input type="radio" name="varianta" value="web" data-name="Klávesnice v mobilu">
+                <span class="name">Klávesnice v mobilu</span>
+                <span class="desc">Jeden displej – klávesnice je na stránce v mobilu přes Wi-Fi kalkulačky
+                  <b>Caltucalor</b> (heslo <code>kalkulacka</code>).</span>
+                <ul class="tags"><li>1 displej</li><li>Wi-Fi</li><li>mobil</li></ul>
+              </label>
+            </fieldset>
+            <p class="hint">Verzi můžeš kdykoli vyměnit – stačí nainstalovat tu druhou. Uložené grafy a nastavení zůstanou.</p>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="num">2</div>
           <div>
             <h3>Připoj kalkulačku</h3>
             <p class="text">USB-C kabel zapoj přímo do desky XIAO (ne do nabíječky). Zavři Serial Monitor a jiné
@@ -412,17 +482,17 @@
         </div>
 
         <div class="step">
-          <div class="num">2</div>
+          <div class="num">3</div>
           <div>
             <h3>Nainstaluj</h3>
             <div class="install">
-              <esp-web-install-button id="installer" manifest="firmware/6.3/xiao/manifest.json">
-                <button slot="activate" class="btn">Nainstalovat verzi 6.3</button>
+              <esp-web-install-button id="installer" manifest="firmware/7/dotyk/manifest.json">
+                <button slot="activate" class="btn">Nainstalovat verzi 7</button>
                 <span slot="unsupported" class="note">Tenhle prohlížeč neumí s kalkulačkou mluvit přes USB.
                   Otevři stránku na počítači v <b>Chrome</b> nebo <b>Edge</b>.</span>
                 <span slot="not-allowed" class="note">Instalace funguje jen na stránce s adresou <b>https://</b>.</span>
               </esp-web-install-button>
-              <div class="chosen">asi minuta · uložené grafy zůstanou</div>
+              <div class="chosen"><b id="chosen-name">Dotyková klávesnice</b> · asi minuta · uložené grafy zůstanou</div>
             </div>
           </div>
         </div>
@@ -434,9 +504,12 @@
           <ol>
             <li>Prohlížeč se zeptá na port – vyber ten s kalkulačkou (třeba <b>USB JTAG/serial debug unit</b>
               nebo <b>COM…</b>) a dej <b>Připojit</b>.</li>
-            <li>V okně (je anglicky) klikni na <b>Install Caltucalor</b>.</li>
+            <li>V okně (je anglicky) klikni na <b>Install Caltucalor – …</b> s názvem vybrané verze.</li>
             <li><b>Erase device</b> nech <b>nezaškrtnuté</b> – uložené grafy a nastavení zůstanou.</li>
             <li><b>Next</b> → <b>Install</b>. Nahrávání trvá asi minutu, pak se kalkulačka sama restartuje.</li>
+            <li><b>Dotyková klávesnice:</b> poprvé se na ní ukáže kalibrace – ťukni doprostřed tří křížků.</li>
+            <li><b>Klávesnice v mobilu:</b> připoj mobil k Wi-Fi <b>Caltucalor</b>, vypni mobilní data a otevři
+              <b>http://192.168.4.1</b>.</li>
             <li>Číslo verze najdeš v kalkulačce v <b>Nastavení</b> vpravo dole.</li>
           </ol>
         </div>
@@ -446,10 +519,31 @@
             <li><b>Port se neukáže:</b> zkus jiný kabel (některé jen nabíjejí) nebo jiný USB port.</li>
             <li><b>Deska nereaguje:</b> podrž na XIAO tlačítko <b>BOOT</b>, krátce zmáčkni <b>RESET</b>, pusť BOOT
               a klikni na Nainstalovat znovu. Po nahrání zmáčkni RESET.</li>
-            <li><b>Barvy jsou jako negativ:</b> v Nastavení přepni řádek <b>3 Barvy</b> – kalkulačka si to zapamatuje.</li>
+            <li><b>Barvy jsou jako negativ:</b> v Nastavení přepni řádek <b>3 Barvy</b> – kalkulačka si to zapamatuje.
+              Displej klávesnice má vlastní tlačítka v Nastavení na záložce <b>Dotyk</b>.</li>
+            <li><b>Ťuknutí míjí klávesy:</b> podrž na XIAO tlačítko <b>BOOT</b> 2 sekundy a pusť – spustí se kalibrace dotyku.</li>
             <li><b>Port je obsazený:</b> zavři Serial Monitor, Arduino IDE nebo druhou kartu s touhle stránkou.</li>
+            <li>Víc v <a href="#navod">návodu</a> v kapitole <b>Když něco nefunguje</b>.</li>
           </ul>
         </div>
+      </div>
+    </section>
+
+    <section class="block" id="navod">
+      <div class="guide">
+        <div>
+          <p class="eyebrow">Návod · 13 stran</p>
+          <h2>Celá stavba v jednom PDF</h2>
+          <p>Součástky, piny desky XIAO, zapojení obou verzí krok za krokem, baterie s nabíječkou a vypínačem,
+            nahrání programu, první spuštění s kalibrací dotyku, ovládání a co dělat, když něco nefunguje.</p>
+          <div class="cta">
+            <a class="btn" href="caltucalor-navod.pdf" target="_blank" rel="noopener">Otevřít návod</a>
+            <span class="size">PDF · 481 kB · pro verzi 7</span>
+          </div>
+        </div>
+        <a class="pages" href="caltucalor-navod.pdf" target="_blank" rel="noopener" aria-label="Otevřít návod v PDF">
+          <img src="img/navod-1.png" width="420" height="594" alt="" loading="lazy"><img src="img/navod-2.png" width="420" height="594" alt="" loading="lazy"><img src="img/navod-3.png" width="420" height="594" alt="" loading="lazy">
+        </a>
       </div>
     </section>
 
@@ -477,11 +571,11 @@
   <section class="tab" id="historie" data-tab>
     <div class="tab-head">
       <p class="eyebrow">Historie aktualizací</p>
-      <h1>22 verzí od 25. 10. 2026</h1>
+      <h1>23 verzí od 25. 10. 2026</h1>
       <p class="lead">Velké aktualizace přinesly nové režimy a velké změny, malé jsou opravy a menší novinky.</p>
     </div>
     <div class="history-head">
-      <div class="legend"><span><span class="badge" style="background:var(--accent);color:var(--accent-ink)">Velká</span> 6×</span>
+      <div class="legend"><span><span class="badge" style="background:var(--accent);color:var(--accent-ink)">Velká</span> 7×</span>
         <span><span class="badge" style="background:var(--surface-hi);color:var(--dim)">Malá</span> 16×</span></div>
       <div class="filter" role="group" aria-label="Které aktualizace ukázat">
         <button type="button" data-filter="vse" aria-pressed="true">Vše</button>
@@ -490,7 +584,8 @@
       </div>
     </div>
     <ol class="updates" id="updates" data-filter="vse">
-      <li class="upd minor"><div class="row"><span class="ver">6.3</span><span class="badge">Malá aktualizace</span><span class="name">Vlastní Wi-Fi hned po zapnutí</span><time>13. 11. 2026</time><span class="badge now">aktuální</span></div><ul><li>Kalkulačka se už k žádné síti nepřipojuje – hned po zapnutí udělá vlastní Wi-Fi Caltucalor.</li><li>Instalace a aktualizace přímo z téhle stránky (Chrome nebo Edge a USB kabel).</li></ul></li>
+      <li class="upd major"><div class="big">7<small>verze</small></div><span class="badge">Velká aktualizace</span><span class="badge now">aktuální</span><h3>Dotyková klávesnice</h3><time>15. 11. 2026</time><ul><li>Klávesnice je na druhém, dotykovém displeji pod hlavním – kalkulačka už nepotřebuje mobil a Wi-Fi je úplně vypnutá.</li><li>Dotyk se pozná sám (FT6206/FT6236/FT6336, CST816, CST328 i GT911) a při prvním zapnutí se nakalibruje třemi ťuknutími na křížky.</li><li>V Nastavení je na klávesnici nová záložka Dotyk: kalibrace, barvy, prohození červené a modré, otočení o 180° a typ displeje klávesnice (ILI9341 / ST7789).</li><li>Ťuknutí na zhasnutý displej ho jen probudí; displej klávesnice se ztlumí a zhasne spolu s hlavním.</li><li>Dvě verze programu: s dotykovou klávesnicí, nebo dál s klávesnicí v mobilu přes Wi-Fi – vybírá se při instalaci.</li><li>Návod v PDF: součástky, zapojení obou verzí krok za krokem a uvedení do provozu.</li></ul></li>
+      <li class="upd minor"><div class="row"><span class="ver">6.3</span><span class="badge">Malá aktualizace</span><span class="name">Vlastní Wi-Fi hned po zapnutí</span><time>13. 11. 2026</time></div><ul><li>Kalkulačka se už k žádné síti nepřipojuje – hned po zapnutí udělá vlastní Wi-Fi Caltucalor.</li><li>Instalace a aktualizace přímo z téhle stránky (Chrome nebo Edge a USB kabel).</li></ul></li>
       <li class="upd minor"><div class="row"><span class="ver">6.2</span><span class="badge">Malá aktualizace</span><span class="name">Úprava a mazání grafů na stránce Čas</span><time>13. 11. 2026</time></div><ul><li>Na stránce Čas je dole graf s vybranou proměnnou (t, u, v, w): ťuknutí nebo tužka = upravit, × = smazat (napřed se zeptá).</li><li>Číslo verze a datum překladu v Nastavení, příkaz „verze“.</li></ul></li>
       <li class="upd minor"><div class="row"><span class="ver">6.1</span><span class="badge">Malá aktualizace</span><span class="name">Menu na dvě strany</span><time>12. 11. 2026</time></div><ul><li>Druhá strana menu: Matematika, Obvody, Proměnné, Soustavy, Uložené grafy a Novinky.</li><li>Úprava křivky z Historie ji přepíše a stará verze zmizí; × smaže jen jednu křivku (i u uloženého grafu).</li><li>Rychlejší grafy bez ztráty kvality – přidání nebo smazání křivky už nepočítá znovu ty ostatní.</li></ul></li>
       <li class="upd major"><div class="big">6<small>verze</small></div><span class="badge">Velká aktualizace</span><h3>Matematika a obvody</h3><time>12. 11. 2026</time><ul><li>Faktoriál, kombinace a variace, statistika (průměr, medián, směrodatná odchylka), derivace a integrál, vlastní proměnné.</li><li>Obvody: Ohmův zákon a výkon, dělič napětí, rezistor k LED, RC, RL a LC články, reaktance a hledání kombinací z řady E24.</li><li>Grafy: tečna a směrnice ve stopě, plocha pod křivkou, maximum a minimum, polární grafy r(t).</li><li>Doladěný vzhled a kontrola celé kalkulačky (testy, opravy nalezených chyb).</li></ul></li>
@@ -520,14 +615,14 @@
     <div class="tab-head">
       <p class="eyebrow">Vývoj</p>
       <h1>Jak vznikal Caltucalor</h1>
-      <p class="lead">Jak se z kalkulačky pro počítač stala za 20 dní kapesní kalkulačka. Vyvíjí ji wreze
+      <p class="lead">Jak se z kalkulačky pro počítač stala za 22 dní kapesní kalkulačka. Vyvíjí ji wreze
         spolu s Claudem, AI asistentem od Anthropicu.</p>
     </div>
 
     <div class="stats">
-      <div class="stat"><b>20 dní</b><span>od první verze po 6.3</span></div>
-      <div class="stat"><b>22 verzí</b><span>6 velkých, 16 malých</span></div>
-      <div class="stat"><b>32 000</b><span>řádků C++ (bez vygenerovaných písem a ikon)</span></div>
+      <div class="stat"><b>22 dní</b><span>od první verze po 7</span></div>
+      <div class="stat"><b>23 verzí</b><span>7 velkých, 16 malých</span></div>
+      <div class="stat"><b>33 000</b><span>řádků C++ (bez vygenerovaných písem a ikon)</span></div>
       <div class="stat"><b>1,2 mil.</b><span>příkladů porovnaných s původní kalkulačkou</span></div>
     </div>
 
@@ -543,7 +638,7 @@
 
     <section class="block">
       <h2>Časová osa</h2>
-      <p class="sub">Od přepisu výpočtů po instalaci z webu.</p>
+      <p class="sub">Od přepisu výpočtů po dotykovou klávesnici.</p>
       <ol class="timeline">
         <li><span class="when">25. 10. 2026</span><h3>Z počítače do čipu</h3>
           <p>Výpočetní jádro Vojtovy kalkulačky z C# jsme přepsali do C++, aby běželo přímo na čipu ESP32-S3. Že počítá
@@ -575,6 +670,11 @@
             na dvě strany, rychlejší grafy bez ztráty kvality, číslo verze v Nastavení a tahle stránka s instalací
             přímo z prohlížeče. Na ní běží i živá ukázka: stejný kód kalkulačky jako v čipu, přeložený
             do WebAssembly.</p></li>
+        <li><span class="when">15. 11. 2026</span><h3>Verze 7: dotyková klávesnice</h3>
+          <p>Klávesnice se přestěhovala z mobilu na druhý, dotykový displej pod hlavním a Wi-Fi je v téhle verzi
+            úplně vypnutá. Oba displeje sdílejí jednu sběrnici SPI, dotyk se kalibruje třemi křížky a čip dotyku
+            (FT6336, CST816, GT911…) se pozná sám. Verze s klávesnicí v mobilu zůstává jako druhá volba
+            při instalaci a k oběma je návod v PDF.</p></li>
         <li class="next"><span class="when">Dál</span><h3>Další verze</h3>
           <p>Vývoj pokračuje. Každá nová verze se objeví v <a href="#historie">Historii</a> a nainstaluje se
             odsud jedním kliknutím.</p></li>
@@ -617,7 +717,7 @@
       <h2>Uvnitř</h2>
       <p class="sub">Od stisku klávesy po obrázek na displeji.</p>
       <div class="pipeline">
-        <div class="stage"><b>Klávesnice</b><span>klávesy kreslí sama kalkulačka na dotykový displej, ťuknutí se změní na znak nebo příkaz</span></div>
+        <div class="stage"><b>Klávesnice</b><span>klávesy kreslí sama kalkulačka – na dotykový displej, nebo do mobilu – a ťuknutí se změní na znak nebo příkaz</span></div>
         <div class="stage"><b>Řádek a režimy</b><span>psaný řádek s kurzorem, historie, menu, uložené grafy</span></div>
         <div class="stage"><b>Knihovna Caltucalor</b><span>parser, zlomky, komplexní čísla, matice, rovnice, grafy</span></div>
         <div class="stage"><b>Displej</b><span>kreslení na druhém jádře, DMA na 80 MHz, překresluje se jen to, co se změnilo</span></div>
@@ -630,9 +730,9 @@
       <div class="checks">
         <div class="check"><i>✓</i><div><b>Simulátor na počítači</b><span>Stejný kód kalkulačky běží na PC, ťuká do klávesnice a fotí displej.</span></div></div>
         <div class="check"><i>✓</i><div><b>1,2 milionu příkladů</b><span>Náhodné příklady se spočítají v C++ i v původní kalkulačce v C# a výsledky se porovnají – bez jediného rozdílu.</span></div></div>
-        <div class="check"><i>✓</i><div><b>Náhodné ťukání</b><span>Tisíce náhodných kláves a kontrola, že displej ukazuje přesně to, co má.</span></div></div>
+        <div class="check"><i>✓</i><div><b>Náhodné ťukání</b><span>Tisíce náhodných kláves a kontrola, že oba displeje ukazují přesně to, co mají – s dotykovou i webovou klávesnicí.</span></div></div>
         <div class="check"><i>✓</i><div><b>Otisky grafů</b><span>32 testovacích grafů se musí po každé optimalizaci nakreslit pixel po pixelu stejně.</span></div></div>
-        <div class="check"><i>✓</i><div><b>Stovky testů výpočtů</b><span>Zlomky, matematika, grafy, obvody, psaní na řádek.</span></div></div>
+        <div class="check"><i>✓</i><div><b>Stovky testů</b><span>Zlomky, matematika, grafy, obvody, psaní na řádek i kalibrace dotyku na 120 různě otočených a zrcadlených panelech.</span></div></div>
         <div class="check"><i>✓</i><div><b>Bez varování</b><span>Program se přeloží bez jediného varování překladače.</span></div></div>
       </div>
     </section>
@@ -717,7 +817,7 @@
   </section>
 
   <footer>
-    Caltucalor 6.3 · © 2026 wreze · původní Caltucalor v C#: Vojta · instalace přes <a href="https://github.com/esphome/esp-web-tools">ESP Web Tools</a>
+    Caltucalor 7 · © 2026 wreze · původní Caltucalor v C#: <b>Vojta</b> · instalace přes <a href="https://github.com/esphome/esp-web-tools">ESP Web Tools</a>
     (Apache 2.0) · písmo <a href="fonts/LICENSE-Inter.txt">Inter</a> (SIL OFL 1.1)
   </footer>
 </main>
@@ -785,6 +885,30 @@
         });
       });
     });
+
+    // ---- výběr verze programu: tlačítko instalace dostane manifest vybrané verze ----
+    // (?verze=web v adrese vybere verzi předem; poslední volba se pamatuje v prohlížeči)
+    var installer = document.getElementById("installer");
+    var chosen = document.getElementById("chosen-name");
+    var radios = [].slice.call(document.querySelectorAll('input[name="varianta"]'));
+    function pick(value, remember) {
+      radios.forEach(function (r) {
+        r.checked = r.value === value;
+        r.closest(".variant").classList.toggle("on", r.checked);
+        if (!r.checked) return;
+        var url = "firmware/7/" + r.value + "/manifest.json";
+        installer.setAttribute("manifest", url);
+        installer.manifest = url;
+        chosen.textContent = r.getAttribute("data-name");
+      });
+      if (remember) { try { localStorage.setItem("caltucalor-verze", value); } catch (e) {} }
+    }
+    radios.forEach(function (r) { r.addEventListener("change", function () { pick(r.value, true); }); });
+    var start = null;
+    try { start = localStorage.getItem("caltucalor-verze"); } catch (e) {}
+    var q = /[?&]verze=(dotyk|web)\b/.exec(location.search);
+    if (q) start = q[1];
+    if (start === "dotyk" || start === "web") pick(start, false);
   })();
 
   // ---- kalkulačka v prohlížeči: stejný kód jako v ESP32-S3, přeložený do WebAssembly ----
