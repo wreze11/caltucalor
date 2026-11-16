@@ -404,7 +404,7 @@
       <a href="#vyvoj">Vývoj</a>
       <a href="#autor">O autorech</a>
     </nav>
-    <div class="pill">verze 7.1</div>
+    <div class="pill">verze 7.2</div>
   </div>
 </header>
 
@@ -420,7 +420,7 @@
           Nebo jen jeden a klávesnici v mobilu – verzi si vybereš při instalaci. Vyzkoušej si ho přímo tady
           a program do něj nahraješ z prohlížeče – stačí USB-C kabel.</p>
         <div class="cta">
-          <a class="btn" href="#nainstalovat">Nainstalovat verzi 7.1</a>
+          <a class="btn" href="#nainstalovat">Nainstalovat verzi 7.2</a>
           <a class="btn ghost" href="#navod">Návod v PDF</a>
           <a class="btn ghost" href="#historie">Co je nového</a>
         </div>
@@ -445,7 +445,7 @@
 
     <section class="block" id="nainstalovat">
       <div class="card">
-        <h2>Instalace verze 7.1</h2>
+        <h2>Instalace verze 7.2</h2>
         <p class="sub">Když už v kalkulačce Caltucalor je, tohle ji jen aktualizuje. Co je nového, najdeš
           v <a href="#historie">historii aktualizací</a>.</p>
 
@@ -457,7 +457,7 @@
               stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
           </svg>
           <div><b>Seeed XIAO ESP32S3</b>
-            <span>hlavní displej ST7789 240 × 320 · zapojení obou verzí je v <a href="#navod">návodu</a></span></div>
+            <span>hlavní displej ST7789 240 × 320 · klávesnice 3,5" ST7796S 480 × 320 · zapojení obou verzí je v <a href="#navod">návodu</a></span></div>
         </div>
 
         <div class="step">
@@ -469,8 +469,8 @@
               <label class="variant on">
                 <input type="radio" name="varianta" value="dotyk" data-name="Dotyková klávesnice" checked>
                 <span class="name">Dotyková klávesnice <span class="rec">doporučená</span></span>
-                <span class="desc">Dva displeje – dole dotyková klávesnice. Wi-Fi je vypnutá, mobil není potřeba.</span>
-                <ul class="tags"><li>2 displeje</li><li>bez Wi-Fi</li><li>kapacitní dotyk</li></ul>
+                <span class="desc">Dva displeje – dole dotyková klávesnice na 3,5" displeji (jde i 2,4–2,8"). Wi-Fi je vypnutá, mobil není potřeba.</span>
+                <ul class="tags"><li>2 displeje</li><li>bez Wi-Fi</li><li>kapacitní dotyk</li><li>3,5" klávesnice</li></ul>
               </label>
               <label class="variant">
                 <input type="radio" name="varianta" value="web" data-name="Klávesnice v mobilu">
@@ -498,8 +498,8 @@
           <div>
             <h3>Nainstaluj</h3>
             <div class="install">
-              <esp-web-install-button id="installer" manifest="firmware/7.1/dotyk/manifest.json">
-                <button slot="activate" class="btn">Nainstalovat verzi 7.1</button>
+              <esp-web-install-button id="installer" manifest="firmware/7.2/dotyk/manifest.json">
+                <button slot="activate" class="btn">Nainstalovat verzi 7.2</button>
                 <span slot="unsupported" class="note">Tenhle prohlížeč neumí s kalkulačkou mluvit přes USB.
                   Otevři stránku na počítači v <b>Chrome</b> nebo <b>Edge</b>.</span>
                 <span slot="not-allowed" class="note">Instalace funguje jen na stránce s adresou <b>https://</b>.</span>
@@ -550,7 +550,7 @@
             nahrání programu, první spuštění s kalibrací dotyku, ovládání a co dělat, když něco nefunguje.</p>
           <div class="cta">
             <a class="btn" href="caltucalor-navod.pdf" target="_blank" rel="noopener">Otevřít návod</a>
-            <span class="size">PDF · 481 kB · pro verzi 7.1</span>
+            <span class="size">PDF · 505 kB · pro verzi 7.2</span>
           </div>
         </div>
         <a class="pages" href="caltucalor-navod.pdf" target="_blank" rel="noopener" aria-label="Otevřít návod v PDF">
@@ -583,12 +583,12 @@
   <section class="tab" id="historie" data-tab>
     <div class="tab-head">
       <p class="eyebrow">Historie aktualizací</p>
-      <h1>24 verzí od 25. 10. 2026</h1>
+      <h1>25 verzí od 25. 10. 2026</h1>
       <p class="lead">Velké aktualizace přinesly nové režimy a velké změny, malé jsou opravy a menší novinky.</p>
     </div>
     <div class="history-head">
       <div class="legend"><span><span class="badge" style="background:var(--accent);color:var(--accent-ink)">Velká</span> 7×</span>
-        <span><span class="badge" style="background:var(--surface-hi);color:var(--dim)">Malá</span> 17×</span></div>
+        <span><span class="badge" style="background:var(--surface-hi);color:var(--dim)">Malá</span> 18×</span></div>
       <div class="filter" role="group" aria-label="Které aktualizace ukázat">
         <button type="button" data-filter="vse" aria-pressed="true">Vše</button>
         <button type="button" data-filter="velke" aria-pressed="false">Velké</button>
@@ -596,7 +596,8 @@
       </div>
     </div>
     <ol class="updates" id="updates" data-filter="vse">
-      <li class="upd minor"><div class="row"><span class="ver">7.1</span><span class="badge">Malá aktualizace</span><span class="name">Počítání na první straně menu a měření baterie</span><time>16. 11. 2026</time><span class="badge now">aktuální</span></div><ul><li>Na první straně menu je jen počítání: Výpočty, Grafy, Komplexní, Matice, Rovnice, Matematika, Součástky a Obvody. Nastavení, Nápověda, Novinky, Uložené grafy, Soustavy a Proměnné jsou na druhé straně.</li><li>Nápověda má stejná čísla jako menu (6 = Matematika, 7 = Součástky a obvody, 8 = Nastavení).</li><li>Ukazatel baterie v liště: program z webu měří baterii sám. Když je na D9 dělič (2 × 200 kΩ a 100 nF), pozná to a ukáže procenta; bez děliče je v liště dál jen USB.</li><li>Příkaz baterie ukáže napětí, nebo že dělič chybí – zapojení je v návodu v PDF.</li></ul></li>
+      <li class="upd minor"><div class="row"><span class="ver">7.2</span><span class="badge">Malá aktualizace</span><span class="name">Klávesnice na 3,5&quot; displeji</span><time>16. 11. 2026</time><span class="badge now">aktuální</span></div><ul><li>Dotyková verze umí displej klávesnice Waveshare 3,5&quot; (řadič ST7796S, 480 × 320) a je teď výchozí. Klávesnice vyplní celý displej – tlačítka, písmo i ikony jsou o třetinu větší a pořád ostré.</li><li>Typ displeje klávesnice se přepíná v Nastavení → Dotyk → Typ displeje nebo příkazem kb typ: ST7796S 3,5&quot; → ILI9341 → ST7789 (2,4–2,8&quot; 320 × 240).</li><li>Po aktualizaci se displej klávesnice nastaví znovu a dotyk se jednou zkalibruje třemi křížky.</li><li>Návod v PDF: displej klávesnice Waveshare 3,5&quot;, piny pojmenované jako na použitých displejích (LED, SDI(MOSI), LCD_CS, TP_SDA …) a napájení klávesnice přes VCC.</li></ul></li>
+      <li class="upd minor"><div class="row"><span class="ver">7.1</span><span class="badge">Malá aktualizace</span><span class="name">Počítání na první straně menu a měření baterie</span><time>16. 11. 2026</time></div><ul><li>Na první straně menu je jen počítání: Výpočty, Grafy, Komplexní, Matice, Rovnice, Matematika, Součástky a Obvody. Nastavení, Nápověda, Novinky, Uložené grafy, Soustavy a Proměnné jsou na druhé straně.</li><li>Nápověda má stejná čísla jako menu (6 = Matematika, 7 = Součástky a obvody, 8 = Nastavení).</li><li>Ukazatel baterie v liště: program z webu měří baterii sám. Když je na D9 dělič (2 × 200 kΩ a 100 nF), pozná to a ukáže procenta; bez děliče je v liště dál jen USB.</li><li>Příkaz baterie ukáže napětí, nebo že dělič chybí – zapojení je v návodu v PDF.</li></ul></li>
       <li class="upd major"><div class="big">7<small>verze</small></div><span class="badge">Velká aktualizace</span><h3>Dotyková klávesnice</h3><time>15. 11. 2026</time><ul><li>Klávesnice je na druhém, dotykovém displeji pod hlavním – kalkulačka už nepotřebuje mobil a Wi-Fi je úplně vypnutá.</li><li>Dotyk se pozná sám (FT6206/FT6236/FT6336, CST816, CST328 i GT911) a při prvním zapnutí se nakalibruje třemi ťuknutími na křížky.</li><li>V Nastavení je na klávesnici nová záložka Dotyk: kalibrace, barvy, prohození červené a modré, otočení o 180° a typ displeje klávesnice (ILI9341 / ST7789).</li><li>Ťuknutí na zhasnutý displej ho jen probudí; displej klávesnice se ztlumí a zhasne spolu s hlavním.</li><li>Dvě verze programu: s dotykovou klávesnicí, nebo dál s klávesnicí v mobilu přes Wi-Fi – vybírá se při instalaci.</li><li>Návod v PDF: součástky, zapojení obou verzí krok za krokem a uvedení do provozu.</li></ul></li>
       <li class="upd minor"><div class="row"><span class="ver">6.3</span><span class="badge">Malá aktualizace</span><span class="name">Vlastní Wi-Fi hned po zapnutí</span><time>13. 11. 2026</time></div><ul><li>Kalkulačka se už k žádné síti nepřipojuje – hned po zapnutí udělá vlastní Wi-Fi Caltucalor.</li><li>Instalace a aktualizace přímo z téhle stránky (Chrome nebo Edge a USB kabel).</li></ul></li>
       <li class="upd minor"><div class="row"><span class="ver">6.2</span><span class="badge">Malá aktualizace</span><span class="name">Úprava a mazání grafů na stránce Čas</span><time>13. 11. 2026</time></div><ul><li>Na stránce Čas je dole graf s vybranou proměnnou (t, u, v, w): ťuknutí nebo tužka = upravit, × = smazat (napřed se zeptá).</li><li>Číslo verze a datum překladu v Nastavení, příkaz „verze“.</li></ul></li>
@@ -633,8 +634,8 @@
     </div>
 
     <div class="stats">
-      <div class="stat"><b>23 dní</b><span>od první verze po 7.1</span></div>
-      <div class="stat"><b>24 verzí</b><span>7 velkých, 17 malých</span></div>
+      <div class="stat"><b>23 dní</b><span>od první verze po 7.2</span></div>
+      <div class="stat"><b>25 verzí</b><span>7 velkých, 18 malých</span></div>
       <div class="stat"><b>33 000</b><span>řádků C++ (bez vygenerovaných písem a ikon)</span></div>
       <div class="stat"><b>1,2 mil.</b><span>příkladů porovnaných s původní kalkulačkou</span></div>
     </div>
@@ -839,7 +840,7 @@
   </aside>
 
   <footer>
-    Caltucalor 7.1 · © 2026 wreze · původní Caltucalor v C#: <b>hamter</b> · instalace přes <a href="https://github.com/esphome/esp-web-tools">ESP Web Tools</a>
+    Caltucalor 7.2 · © 2026 wreze · původní Caltucalor v C#: <b>hamter</b> · instalace přes <a href="https://github.com/esphome/esp-web-tools">ESP Web Tools</a>
     (Apache 2.0) · písmo <a href="fonts/LICENSE-Inter.txt">Inter</a> (SIL OFL 1.1)
   </footer>
 </main>
@@ -918,7 +919,7 @@
         r.checked = r.value === value;
         r.closest(".variant").classList.toggle("on", r.checked);
         if (!r.checked) return;
-        var url = "firmware/7.1/" + r.value + "/manifest.json";
+        var url = "firmware/7.2/" + r.value + "/manifest.json";
         installer.setAttribute("manifest", url);
         installer.manifest = url;
         chosen.textContent = r.getAttribute("data-name");
