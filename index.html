@@ -404,7 +404,7 @@
       <a href="#vyvoj">Vývoj</a>
       <a href="#autor">O autorech</a>
     </nav>
-    <div class="pill">verze 7.4</div>
+    <div class="pill">verze 7.5</div>
   </div>
 </header>
 
@@ -420,7 +420,7 @@
           Nebo jen jeden a klávesnici v mobilu – verzi si vybereš při instalaci. Vyzkoušej si ho přímo tady
           a program do něj nahraješ z prohlížeče – stačí USB-C kabel.</p>
         <div class="cta">
-          <a class="btn" href="#nainstalovat">Nainstalovat verzi 7.4</a>
+          <a class="btn" href="#nainstalovat">Nainstalovat verzi 7.5</a>
           <a class="btn ghost" href="#navod">Návod v PDF</a>
           <a class="btn ghost" href="#historie">Co je nového</a>
         </div>
@@ -445,7 +445,7 @@
 
     <section class="block" id="nainstalovat">
       <div class="card">
-        <h2>Instalace verze 7.4</h2>
+        <h2>Instalace verze 7.5</h2>
         <p class="sub">Když už v kalkulačce Caltucalor je, tohle ji jen aktualizuje. Co je nového, najdeš
           v <a href="#historie">historii aktualizací</a>.</p>
 
@@ -498,8 +498,8 @@
           <div>
             <h3>Nainstaluj</h3>
             <div class="install">
-              <esp-web-install-button id="installer" manifest="firmware/7.4/dotyk/manifest.json">
-                <button slot="activate" class="btn">Nainstalovat verzi 7.4</button>
+              <esp-web-install-button id="installer" manifest="firmware/7.5/dotyk/manifest.json">
+                <button slot="activate" class="btn">Nainstalovat verzi 7.5</button>
                 <span slot="unsupported" class="note">Tenhle prohlížeč neumí s kalkulačkou mluvit přes USB.
                   Otevři stránku na počítači v <b>Chrome</b> nebo <b>Edge</b>.</span>
                 <span slot="not-allowed" class="note">Instalace funguje jen na stránce s adresou <b>https://</b>.</span>
@@ -550,7 +550,7 @@
             nahrání programu, první spuštění s kalibrací dotyku, ovládání a co dělat, když něco nefunguje.</p>
           <div class="cta">
             <a class="btn" href="caltucalor-navod.pdf" target="_blank" rel="noopener">Otevřít návod</a>
-            <span class="size">PDF · 506 kB · pro verzi 7.4</span>
+            <span class="size">PDF · 509 kB · pro verzi 7.5</span>
           </div>
         </div>
         <a class="pages" href="caltucalor-navod.pdf" target="_blank" rel="noopener" aria-label="Otevřít návod v PDF">
@@ -583,12 +583,12 @@
   <section class="tab" id="historie" data-tab>
     <div class="tab-head">
       <p class="eyebrow">Historie aktualizací</p>
-      <h1>27 verzí od 25. 10. 2026</h1>
+      <h1>28 verzí od 25. 10. 2026</h1>
       <p class="lead">Velké aktualizace přinesly nové režimy a velké změny, malé jsou opravy a menší novinky.</p>
     </div>
     <div class="history-head">
       <div class="legend"><span><span class="badge" style="background:var(--accent);color:var(--accent-ink)">Velká</span> 7×</span>
-        <span><span class="badge" style="background:var(--surface-hi);color:var(--dim)">Malá</span> 20×</span></div>
+        <span><span class="badge" style="background:var(--surface-hi);color:var(--dim)">Malá</span> 21×</span></div>
       <div class="filter" role="group" aria-label="Které aktualizace ukázat">
         <button type="button" data-filter="vse" aria-pressed="true">Vše</button>
         <button type="button" data-filter="velke" aria-pressed="false">Velké</button>
@@ -596,7 +596,8 @@
       </div>
     </div>
     <ol class="updates" id="updates" data-filter="vse">
-      <li class="upd minor"><div class="row"><span class="ver">7.4</span><span class="badge">Malá aktualizace</span><span class="name">Plynulejší animace grafů</span><time>16. 11. 2026</time><span class="badge now">aktuální</span></div><ul><li>Snímek animace grafu se kreslí a posílá na displej jen tam, kde se čáry pohnuly (a kde se změnil rámeček s časem t) – u y = sin(x t) cos(x t) jde přes SPI asi 7× méně pixelů.</li><li>Čáry grafů se kreslí asi 2× rychleji (každý úsek počítá jen svůj pás kolem čáry) a obrázek je přitom pixel po pixelu stejný. Implicitní grafy jako sin(x) sin(y t) = 0.5 se počítají rychleji.</li><li>Další snímek animace se počítá, zatímco se předchozí kreslí a posílá na displej (jedno jádro počítá, druhé kreslí).</li><li>Oprava zamrznutí (verze A): oba displeje se o sběrnici SPI střídají po celých obrázcích. Když se obrazovka, klávesnice nebo výpočet přesto zasekne, kalkulačka se po 8 s sama restartuje a pak dole napíše, co se zaseklo.</li></ul></li>
+      <li class="upd minor"><div class="row"><span class="ver">7.5</span><span class="badge">Malá aktualizace</span><span class="name">Zámek obrazovky, přidání uložených grafů a kontrast klávesnice</span><time>17. 11. 2026</time><span class="badge now">aktuální</span></div><ul><li>Zámek obrazovky pro pohyblivé grafy: v Grafech na stránce Čas klávesa se zámkem (nebo příkaz zamek). Dokud je zapnutý, obrazovka se v Grafech neztlumí ani nezhasne a animace běží pořád; v liště je malý zámek. Mimo Grafy se zhasíná jako dřív a po restartu je zámek vypnutý.</li><li>Uložené grafy jdou přidat k tomu, co je nakreslené, bez přepisování vzorců: na stránce Uložené tlačítko + u řádku, nebo příkaz přidej 2 (i víc najednou: přidej 1 3). Kreslí se nejvýš 4 křivky najednou, stejné vzorce jen jednou; ulož je pak uloží spolu jako nový graf.</li><li>Dotyková verze: vyšší kontrast barev na displeji klávesnice – klávesy se víc liší od pozadí, text je jasnější a barvy sytější. Nastavení → Dotyk → Kontrast přepíná původní / vyšší (výchozí) / vysoký, nebo příkaz kb kontrast 0 / 1 / 2. Hlavní displej se nemění.</li></ul></li>
+      <li class="upd minor"><div class="row"><span class="ver">7.4</span><span class="badge">Malá aktualizace</span><span class="name">Plynulejší animace grafů</span><time>16. 11. 2026</time></div><ul><li>Snímek animace grafu se kreslí a posílá na displej jen tam, kde se čáry pohnuly (a kde se změnil rámeček s časem t) – u y = sin(x t) cos(x t) jde přes SPI asi 7× méně pixelů.</li><li>Čáry grafů se kreslí asi 2× rychleji (každý úsek počítá jen svůj pás kolem čáry) a obrázek je přitom pixel po pixelu stejný. Implicitní grafy jako sin(x) sin(y t) = 0.5 se počítají rychleji.</li><li>Další snímek animace se počítá, zatímco se předchozí kreslí a posílá na displej (jedno jádro počítá, druhé kreslí).</li><li>Oprava zamrznutí (verze A): oba displeje se o sběrnici SPI střídají po celých obrázcích. Když se obrazovka, klávesnice nebo výpočet přesto zasekne, kalkulačka se po 8 s sama restartuje a pak dole napíše, co se zaseklo.</li></ul></li>
       <li class="upd minor"><div class="row"><span class="ver">7.3</span><span class="badge">Malá aktualizace</span><span class="name">Plynulejší klávesnice na 3,5&quot; displeji</span><time>16. 11. 2026</time></div><ul><li>Na 3,5&quot; displeji se stránky, režimy a 2nd přepnou hned, bez posunu – posílá se tak až 12× méně dat přes SPI a klávesnice se neseká.</li><li>Dotyk jede na I2C 100 kHz (spolehlivější na drátech) a když přestane odpovídat, sám se obnoví. Dotyk, který 10 s drží na jednom místě (rušení), se pustí.</li><li>Displeji klávesnice se po 5 s bez kreslení znovu pošle nastavení a po minutě celý obraz – kdyby ho rušení na drátech pokazilo.</li><li>Příkaz kb vypíše i rychlost snímků a chyby dotyku (Serial Monitor nebo Logs &amp; Console na instalační stránce).</li></ul></li>
       <li class="upd minor"><div class="row"><span class="ver">7.2</span><span class="badge">Malá aktualizace</span><span class="name">Klávesnice na 3,5&quot; displeji</span><time>16. 11. 2026</time></div><ul><li>Dotyková verze umí displej klávesnice Waveshare 3,5&quot; (řadič ST7796S, 480 × 320) a je teď výchozí. Klávesnice vyplní celý displej – tlačítka, písmo i ikony jsou o třetinu větší a pořád ostré.</li><li>Typ displeje klávesnice se přepíná v Nastavení → Dotyk → Typ displeje nebo příkazem kb typ: ST7796S 3,5&quot; → ILI9341 → ST7789 (2,4–2,8&quot; 320 × 240).</li><li>Po aktualizaci se displej klávesnice nastaví znovu a dotyk se jednou zkalibruje třemi křížky.</li><li>Návod v PDF: displej klávesnice Waveshare 3,5&quot;, piny pojmenované jako na použitých displejích (LED, SDI(MOSI), LCD_CS, TP_SDA …) a napájení klávesnice přes VCC.</li></ul></li>
       <li class="upd minor"><div class="row"><span class="ver">7.1</span><span class="badge">Malá aktualizace</span><span class="name">Počítání na první straně menu a měření baterie</span><time>16. 11. 2026</time></div><ul><li>Na první straně menu je jen počítání: Výpočty, Grafy, Komplexní, Matice, Rovnice, Matematika, Součástky a Obvody. Nastavení, Nápověda, Novinky, Uložené grafy, Soustavy a Proměnné jsou na druhé straně.</li><li>Nápověda má stejná čísla jako menu (6 = Matematika, 7 = Součástky a obvody, 8 = Nastavení).</li><li>Ukazatel baterie v liště: program z webu měří baterii sám. Když je na D9 dělič (2 × 200 kΩ a 100 nF), pozná to a ukáže procenta; bez děliče je v liště dál jen USB.</li><li>Příkaz baterie ukáže napětí, nebo že dělič chybí – zapojení je v návodu v PDF.</li></ul></li>
@@ -631,13 +632,13 @@
     <div class="tab-head">
       <p class="eyebrow">Vývoj</p>
       <h1>Jak vznikal Caltucalor</h1>
-      <p class="lead">Jak se z kalkulačky pro počítač stala za 23 dní kapesní kalkulačka. Vyvíjí ji wreze
+      <p class="lead">Jak se z kalkulačky pro počítač stala za 24 dní kapesní kalkulačka. Vyvíjí ji wreze
         spolu s Claudem, AI asistentem od Anthropicu.</p>
     </div>
 
     <div class="stats">
-      <div class="stat"><b>23 dní</b><span>od první verze po 7.4</span></div>
-      <div class="stat"><b>27 verzí</b><span>7 velkých, 20 malých</span></div>
+      <div class="stat"><b>24 dní</b><span>od první verze po 7.5</span></div>
+      <div class="stat"><b>28 verzí</b><span>7 velkých, 21 malých</span></div>
       <div class="stat"><b>33 000</b><span>řádků C++ (bez vygenerovaných písem a ikon)</span></div>
       <div class="stat"><b>1,2 mil.</b><span>příkladů porovnaných s původní kalkulačkou</span></div>
     </div>
@@ -842,7 +843,7 @@
   </aside>
 
   <footer>
-    Caltucalor 7.4 · © 2026 wreze · původní Caltucalor v C#: <b>hamter</b> · instalace přes <a href="https://github.com/esphome/esp-web-tools">ESP Web Tools</a>
+    Caltucalor 7.5 · © 2026 wreze · původní Caltucalor v C#: <b>hamter</b> · instalace přes <a href="https://github.com/esphome/esp-web-tools">ESP Web Tools</a>
     (Apache 2.0) · písmo <a href="fonts/LICENSE-Inter.txt">Inter</a> (SIL OFL 1.1)
   </footer>
 </main>
@@ -921,7 +922,7 @@
         r.checked = r.value === value;
         r.closest(".variant").classList.toggle("on", r.checked);
         if (!r.checked) return;
-        var url = "firmware/7.4/" + r.value + "/manifest.json";
+        var url = "firmware/7.5/" + r.value + "/manifest.json";
         installer.setAttribute("manifest", url);
         installer.manifest = url;
         chosen.textContent = r.getAttribute("data-name");
