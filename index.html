@@ -426,7 +426,7 @@
       <a href="#vyvoj">Vývoj</a>
       <a href="#autor">O autorech</a>
     </nav>
-    <div class="pill">verze 7.7</div>
+    <div class="pill">verze 7.8</div>
   </div>
 </header>
 
@@ -442,7 +442,7 @@
           Nebo jen jeden a klávesnici v mobilu – verzi si vybereš při instalaci. Vyzkoušej si ho přímo tady
           a program do něj nahraješ z prohlížeče – stačí USB-C kabel.</p>
         <div class="cta">
-          <a class="btn" href="#nainstalovat">Nainstalovat verzi 7.7</a>
+          <a class="btn" href="#nainstalovat">Nainstalovat verzi 7.8</a>
           <a class="btn ghost" href="#navod">Návod v PDF</a>
           <a class="btn ghost" href="#historie">Co je nového</a>
         </div>
@@ -467,7 +467,7 @@
 
     <section class="block" id="nainstalovat">
       <div class="card">
-        <h2>Instalace verze 7.7</h2>
+        <h2>Instalace verze 7.8</h2>
         <p class="sub">Když už v kalkulačce Caltucalor je, tohle ji jen aktualizuje. Co je nového, najdeš
           v <a href="#historie">historii aktualizací</a>.</p>
 
@@ -520,8 +520,8 @@
           <div>
             <h3>Nainstaluj</h3>
             <div class="install">
-              <esp-web-install-button id="installer" manifest="firmware/7.7/dotyk/manifest.json">
-                <button slot="activate" class="btn">Nainstalovat verzi 7.7</button>
+              <esp-web-install-button id="installer" manifest="firmware/7.8/dotyk/manifest.json">
+                <button slot="activate" class="btn">Nainstalovat verzi 7.8</button>
                 <span slot="unsupported" class="note">Tenhle prohlížeč neumí s kalkulačkou mluvit přes USB.
                   Otevři stránku na počítači v <b>Chrome</b> nebo <b>Edge</b>.</span>
                 <span slot="not-allowed" class="note">Instalace funguje jen na stránce s adresou <b>https://</b>.</span>
@@ -572,7 +572,7 @@
             nahrání programu, první spuštění s kalibrací dotyku, ovládání a co dělat, když něco nefunguje.</p>
           <div class="cta">
             <a class="btn" href="caltucalor-navod.pdf" target="_blank" rel="noopener">Otevřít návod</a>
-            <span class="size">PDF · 512 kB · pro verzi 7.7</span>
+            <span class="size">PDF · 512 kB · pro verzi 7.8</span>
           </div>
         </div>
         <a class="pages" href="caltucalor-navod.pdf" target="_blank" rel="noopener" aria-label="Otevřít návod v PDF">
@@ -634,12 +634,12 @@
   <section class="tab" id="historie" data-tab>
     <div class="tab-head">
       <p class="eyebrow">Historie aktualizací</p>
-      <h1>30 verzí od 25. 10. 2026</h1>
+      <h1>31 verzí od 25. 10. 2026</h1>
       <p class="lead">Velké aktualizace přinesly nové režimy a velké změny, malé jsou opravy a menší novinky.</p>
     </div>
     <div class="history-head">
       <div class="legend"><span><span class="badge" style="background:var(--accent);color:var(--accent-ink)">Velká</span> 7×</span>
-        <span><span class="badge" style="background:var(--surface-hi);color:var(--dim)">Malá</span> 23×</span></div>
+        <span><span class="badge" style="background:var(--surface-hi);color:var(--dim)">Malá</span> 24×</span></div>
       <div class="filter" role="group" aria-label="Které aktualizace ukázat">
         <button type="button" data-filter="vse" aria-pressed="true">Vše</button>
         <button type="button" data-filter="velke" aria-pressed="false">Velké</button>
@@ -647,7 +647,8 @@
       </div>
     </div>
     <ol class="updates" id="updates" data-filter="vse">
-      <li class="upd minor"><div class="row"><span class="ver">7.7</span><span class="badge">Malá aktualizace</span><span class="name">Skrytá hra je teď mnohem větší</span><time>20. 11. 2026</time><span class="badge now">aktuální</span></div><ul><li>Skrytá hra ve verzi s dotykovou klávesnicí je teď úplně jiná – a mnohem větší. Kde je, zůstává tajemstvím (tip: Nastavení). Ve verzi s klávesnicí v mobilu zůstává ta původní.</li><li>Paměť kalkulačky je rozdělená jinak (kalkulačka, hra, data hry a uložené pozice). Nastavení a uložené grafy zůstanou, jen instalace dotykové verze trvá kvůli datům navíc asi dvě minuty.</li><li>Kdo si dotykovou verzi nahrává sám přes PlatformIO, přidá do platformio.ini řádek board_build.partitions = partitions_doom.csv (soubor je v projektu) a jednou nainstaluje kalkulačku z tohohle webu – jinak zůstane původní hra.</li></ul></li>
+      <li class="upd minor"><div class="row"><span class="ver">7.8</span><span class="badge">Malá aktualizace</span><span class="name">Oprava skryté hry</span><time>21. 11. 2026</time><span class="badge now">aktuální</span></div><ul><li>Skrytá hra v dotykové verzi na desce hned v první úrovni spadla s hlášením chyby (R_MapPlane …). Hra po restartu z kalkulačky dostala paměť se zbytky po kalkulačce, a ne vynulovanou, jak čekala – teď začíná s čistou pamětí. Na počítači se to předtím neukázalo, protože tam nová paměť nuly má; testy teď paměť schválně zaplní smetím.</li><li>Displej klávesnice měl ve hře barvy jako negativ. Hra teď oběma displejům každou sekundu znovu pošle nastavení (barvy, natočení, zapnutí) a klávesnici postupně překreslí – stejně, jako to kalkulačka dělá s displejem klávesnice od verze 7.3, kdyby rušení na drátech displeji něco přepnulo.</li><li>Hlášení chyby ve hře ukazuje i verzi hry. Kalkulačka sama je beze změn. Hra je v samostatné části paměti, takže kdo si kalkulačku nahrává sám přes PlatformIO, nainstaluje dotykovou verzi jednou z tohohle webu.</li></ul></li>
+      <li class="upd minor"><div class="row"><span class="ver">7.7</span><span class="badge">Malá aktualizace</span><span class="name">Skrytá hra je teď mnohem větší</span><time>20. 11. 2026</time></div><ul><li>Skrytá hra ve verzi s dotykovou klávesnicí je teď úplně jiná – a mnohem větší. Kde je, zůstává tajemstvím (tip: Nastavení). Ve verzi s klávesnicí v mobilu zůstává ta původní.</li><li>Paměť kalkulačky je rozdělená jinak (kalkulačka, hra, data hry a uložené pozice). Nastavení a uložené grafy zůstanou, jen instalace dotykové verze trvá kvůli datům navíc asi dvě minuty.</li><li>Kdo si dotykovou verzi nahrává sám přes PlatformIO, přidá do platformio.ini řádek board_build.partitions = partitions_doom.csv (soubor je v projektu) a jednou nainstaluje kalkulačku z tohohle webu – jinak zůstane původní hra.</li></ul></li>
       <li class="upd minor"><div class="row"><span class="ver">7.6</span><span class="badge">Malá aktualizace</span><span class="name">Převody jednotek, přesnější baterie a snímek obrazovky</span><time>20. 11. 2026</time></div><ul><li>Převody jednotek: 5 km/h na m/s, 1 mi na km, 20 °C na °F, 5 GB na MiB, 1 kWh na J (místo na jde napsat i → nebo to). Ve Výpočtech je na klávesnici nová záložka Jedn. s nejčastějšími jednotkami (podržením klávesy další: µm, t, gal, kJ, atm, MiB …) a příkaz jednotky vypíše všechny: délka, plocha, objem, hmotnost, čas, rychlost, teplota, energie, výkon, tlak, úhel, data, frekvence i elektrické veličiny. Výsledek jde dál jako ans a jde uložit do proměnné (a = 3 mi na km).</li><li>Přesnější procenta baterie: kalkulačka počítá s tím, kolik zrovna bere (podsvícení, Wi-Fi, počítání), napětí měří 32× a rušení zahodí, pozná nabíjení a na baterii procenta už jen klesají – žádné skoky nahoru a dolů. Kdo má multimetr, změří napětí baterie a napíše ho: baterie 3.95 – kalkulačka si podle toho opraví dělič (baterie reset = zpět). Upozornění při 10 % a znovu při 3 %.</li><li>Snímek obrazovky přes USB: na téhle stránce je nová část Obraz z kalkulačky do počítače – v Chrome nebo Edge připoj kalkulačku kabelem a klikni Vyfotit: obraz displeje (u dotykové verze i klávesnice) se ukáže na stránce a Uložit PNG ho stáhne. Dokud je kalkulačka připojená, jde na ní napsat i snimek.</li><li>A někde v kalkulačce se schovává malé překvapení.</li></ul></li>
       <li class="upd minor"><div class="row"><span class="ver">7.5</span><span class="badge">Malá aktualizace</span><span class="name">Zámek obrazovky, přidání uložených grafů a kontrast klávesnice</span><time>17. 11. 2026</time></div><ul><li>Zámek obrazovky pro pohyblivé grafy: v Grafech na stránce Čas klávesa se zámkem (nebo příkaz zamek). Dokud je zapnutý, obrazovka se v Grafech neztlumí ani nezhasne a animace běží pořád; v liště je malý zámek. Mimo Grafy se zhasíná jako dřív a po restartu je zámek vypnutý.</li><li>Uložené grafy jdou přidat k tomu, co je nakreslené, bez přepisování vzorců: na stránce Uložené tlačítko + u řádku, nebo příkaz přidej 2 (i víc najednou: přidej 1 3). Kreslí se nejvýš 4 křivky najednou, stejné vzorce jen jednou; ulož je pak uloží spolu jako nový graf.</li><li>Dotyková verze: vyšší kontrast barev na displeji klávesnice – klávesy se víc liší od pozadí, text je jasnější a barvy sytější. Nastavení → Dotyk → Kontrast přepíná původní / vyšší (výchozí) / vysoký, nebo příkaz kb kontrast 0 / 1 / 2. Hlavní displej se nemění.</li></ul></li>
       <li class="upd minor"><div class="row"><span class="ver">7.4</span><span class="badge">Malá aktualizace</span><span class="name">Plynulejší animace grafů</span><time>16. 11. 2026</time></div><ul><li>Snímek animace grafu se kreslí a posílá na displej jen tam, kde se čáry pohnuly (a kde se změnil rámeček s časem t) – u y = sin(x t) cos(x t) jde přes SPI asi 7× méně pixelů.</li><li>Čáry grafů se kreslí asi 2× rychleji (každý úsek počítá jen svůj pás kolem čáry) a obrázek je přitom pixel po pixelu stejný. Implicitní grafy jako sin(x) sin(y t) = 0.5 se počítají rychleji.</li><li>Další snímek animace se počítá, zatímco se předchozí kreslí a posílá na displej (jedno jádro počítá, druhé kreslí).</li><li>Oprava zamrznutí (verze A): oba displeje se o sběrnici SPI střídají po celých obrázcích. Když se obrazovka, klávesnice nebo výpočet přesto zasekne, kalkulačka se po 8 s sama restartuje a pak dole napíše, co se zaseklo.</li></ul></li>
@@ -685,13 +686,13 @@
     <div class="tab-head">
       <p class="eyebrow">Vývoj</p>
       <h1>Jak vznikal Caltucalor</h1>
-      <p class="lead">Jak se z kalkulačky pro počítač stala za 27 dní kapesní kalkulačka. Vyvíjí ji wreze
+      <p class="lead">Jak se z kalkulačky pro počítač stala za 28 dní kapesní kalkulačka. Vyvíjí ji wreze
         spolu s Claudem, AI asistentem od Anthropicu.</p>
     </div>
 
     <div class="stats">
-      <div class="stat"><b>27 dní</b><span>od první verze po 7.7</span></div>
-      <div class="stat"><b>30 verzí</b><span>7 velkých, 23 malých</span></div>
+      <div class="stat"><b>28 dní</b><span>od první verze po 7.8</span></div>
+      <div class="stat"><b>31 verzí</b><span>7 velkých, 24 malých</span></div>
       <div class="stat"><b>33 000</b><span>řádků C++ (bez vygenerovaných písem a ikon)</span></div>
       <div class="stat"><b>1,2 mil.</b><span>příkladů porovnaných s původní kalkulačkou</span></div>
     </div>
@@ -745,9 +746,10 @@
             úplně vypnutá. Oba displeje sdílejí jednu sběrnici SPI, dotyk se kalibruje třemi křížky a čip dotyku
             (FT6336, CST816, GT911…) se pozná sám. Verze s klávesnicí v mobilu zůstává jako druhá volba
             při instalaci a k oběma je návod v PDF.</p></li>
-        <li><span class="when">16. – 20. 11.</span><h3>Verze 7.1 – 7.7</h3>
+        <li><span class="when">16. – 21. 11.</span><h3>Verze 7.1 – 7.8</h3>
           <p>Klávesnice na větším 3,5" displeji, plynulejší animace grafů, zámek obrazovky, převody jednotek,
-            přesnější ukazatel baterie, snímek obrazovky do počítače přes USB a mnohem větší skrytá hra.</p></li>
+            přesnější ukazatel baterie, snímek obrazovky do počítače přes USB a mnohem větší skrytá hra
+            (ve 7.8 opravená podle zkoušky na skutečné kalkulačce).</p></li>
         <li class="next"><span class="when">Dál</span><h3>Další verze</h3>
           <p>Vývoj pokračuje. Každá nová verze se objeví v <a href="#historie">Historii</a> a nainstaluje se
             odsud jedním kliknutím.</p></li>
@@ -899,7 +901,7 @@
   </aside>
 
   <footer>
-    Caltucalor 7.7 · © 2026 wreze · původní Caltucalor v C#: <b>hamter</b> · instalace přes <a href="https://github.com/esphome/esp-web-tools">ESP Web Tools</a>
+    Caltucalor 7.8 · © 2026 wreze · původní Caltucalor v C#: <b>hamter</b> · instalace přes <a href="https://github.com/esphome/esp-web-tools">ESP Web Tools</a>
     (Apache 2.0) · písmo <a href="fonts/LICENSE-Inter.txt">Inter</a> (SIL OFL 1.1)
     · dotyková verze obsahuje i skrytý Doom (shareware © id Software, engine <a href="https://github.com/ozkl/doomgeneric">doomgeneric</a>,
     GPL v2 – <a href="doom/caltucalor-doom-zdroj.zip">zdrojový kód</a>)
@@ -1165,7 +1167,7 @@
         r.checked = r.value === value;
         r.closest(".variant").classList.toggle("on", r.checked);
         if (!r.checked) return;
-        var url = "firmware/7.7/" + r.value + "/manifest.json";
+        var url = "firmware/7.8/" + r.value + "/manifest.json";
         installer.setAttribute("manifest", url);
         installer.manifest = url;
         chosen.textContent = r.getAttribute("data-name");
