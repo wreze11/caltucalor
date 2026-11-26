@@ -443,7 +443,7 @@
       <a href="#vyvoj">Vývoj</a>
       <a href="#autor">O autorech</a>
     </nav>
-    <div class="pill">verze 8.0</div>
+    <div class="pill">verze 8.1</div>
   </div>
 </header>
 
@@ -456,17 +456,17 @@
         <p class="eyebrow">Kapesní kalkulačka · ESP32-S3</p>
         <h1>Grafy, zlomky, matice a&nbsp;obvody. <em>V&nbsp;kapse.</em></h1>
         <p class="lead">Caltucalor má dva displeje: nahoře výsledky a grafy, dole dotykovou klávesnici.
-          Nebo jen jeden a klávesnici v mobilu – verzi si vybereš při instalaci. Vyzkoušej si ho přímo tady
+          Vyzkoušej si ho přímo tady
           a program do něj nahraješ z prohlížeče – stačí USB-C kabel. Nově se ho jde zeptat i na cokoli
           jiného: <a href="#ai">AI</a> (Claude) přes hotspot z mobilu.</p>
         <div class="cta">
-          <a class="btn" href="#nainstalovat">Nainstalovat verzi 8.0</a>
+          <a class="btn" href="#nainstalovat">Nainstalovat verzi 8.1</a>
           <a class="btn ghost" href="#navod">Návod v PDF</a>
           <a class="btn ghost" href="#historie">Co je nového</a>
         </div>
         <ul class="facts">
           <li>uložené grafy zůstanou</li>
-          <li>asi minuta</li>
+          <li>asi dvě minuty</li>
           <li>Chrome nebo Edge</li>
         </ul>
       </div>
@@ -485,7 +485,7 @@
 
     <section class="block" id="nainstalovat">
       <div class="card">
-        <h2>Instalace verze 8.0</h2>
+        <h2>Instalace verze 8.1</h2>
         <p class="sub">Když už v kalkulačce Caltucalor je, tohle ji jen aktualizuje. Co je nového, najdeš
           v <a href="#historie">historii aktualizací</a>.</p>
 
@@ -497,35 +497,11 @@
               stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
           </svg>
           <div><b>Seeed XIAO ESP32S3</b>
-            <span>hlavní displej ST7789 240 × 320 · klávesnice 3,5" ST7796S 480 × 320 · zapojení obou verzí je v <a href="#navod">návodu</a></span></div>
+            <span>hlavní displej ST7789 240 × 320 · klávesnice 3,5" ST7796S 480 × 320 · zapojení je v <a href="#navod">návodu</a></span></div>
         </div>
 
         <div class="step">
           <div class="num">1</div>
-          <div>
-            <h3>Vyber verzi</h3>
-            <fieldset class="variants" id="variants">
-              <legend class="sr">Verze programu</legend>
-              <label class="variant on">
-                <input type="radio" name="varianta" value="dotyk" data-name="Dotyková klávesnice" checked>
-                <span class="name">Dotyková klávesnice <span class="rec">doporučená</span></span>
-                <span class="desc">Dva displeje – dole dotyková klávesnice na 3,5" displeji (jde i 2,4–2,8"). Wi-Fi je vypnutá (zapne ji jen AI), mobil není potřeba.</span>
-                <ul class="tags"><li>2 displeje</li><li>bez Wi-Fi</li><li>kapacitní dotyk</li><li>3,5" klávesnice</li></ul>
-              </label>
-              <label class="variant">
-                <input type="radio" name="varianta" value="web" data-name="Klávesnice v mobilu">
-                <span class="name">Klávesnice v mobilu</span>
-                <span class="desc">Jeden displej – klávesnice je na stránce v mobilu přes Wi-Fi kalkulačky
-                  <b>Caltucalor</b> (heslo <code>kalkulacka</code>).</span>
-                <ul class="tags"><li>1 displej</li><li>Wi-Fi</li><li>mobil</li></ul>
-              </label>
-            </fieldset>
-            <p class="hint">Verzi můžeš kdykoli vyměnit – stačí nainstalovat tu druhou. Uložené grafy a nastavení zůstanou.</p>
-          </div>
-        </div>
-
-        <div class="step">
-          <div class="num">2</div>
           <div>
             <h3>Připoj kalkulačku</h3>
             <p class="text">USB-C kabel zapoj přímo do desky XIAO (ne do nabíječky). Zavři Serial Monitor a jiné
@@ -534,17 +510,17 @@
         </div>
 
         <div class="step">
-          <div class="num">3</div>
+          <div class="num">2</div>
           <div>
             <h3>Nainstaluj</h3>
             <div class="install">
-              <esp-web-install-button id="installer" manifest="firmware/8.0/dotyk/manifest.json">
-                <button slot="activate" class="btn">Nainstalovat verzi 8.0</button>
+              <esp-web-install-button id="installer" manifest="firmware/8.1/dotyk/manifest.json">
+                <button slot="activate" class="btn">Nainstalovat verzi 8.1</button>
                 <span slot="unsupported" class="note">Tenhle prohlížeč neumí s kalkulačkou mluvit přes USB.
                   Otevři stránku na počítači v <b>Chrome</b> nebo <b>Edge</b>.</span>
                 <span slot="not-allowed" class="note">Instalace funguje jen na stránce s adresou <b>https://</b>.</span>
               </esp-web-install-button>
-              <div class="chosen"><b id="chosen-name">Dotyková klávesnice</b> · asi minuta · uložené grafy zůstanou</div>
+              <div class="chosen"><b>Dotyková klávesnice</b> · asi dvě minuty · uložené grafy zůstanou</div>
             </div>
           </div>
         </div>
@@ -556,12 +532,10 @@
           <ol>
             <li>Prohlížeč se zeptá na port – vyber ten s kalkulačkou (třeba <b>USB JTAG/serial debug unit</b>
               nebo <b>COM…</b>) a dej <b>Připojit</b>.</li>
-            <li>V okně (je anglicky) klikni na <b>Install Caltucalor – …</b> s názvem vybrané verze.</li>
+            <li>V okně (je anglicky) klikni na <b>Install Caltucalor – dotyková klávesnice</b>.</li>
             <li><b>Erase device</b> nech <b>nezaškrtnuté</b> – uložené grafy a nastavení zůstanou.</li>
-            <li><b>Next</b> → <b>Install</b>. Nahrávání trvá asi minutu (dotyková verze asi dvě – je v ní víc dat), pak se kalkulačka sama restartuje.</li>
-            <li><b>Dotyková klávesnice:</b> poprvé se na ní ukáže kalibrace – ťukni doprostřed tří křížků.</li>
-            <li><b>Klávesnice v mobilu:</b> připoj mobil k Wi-Fi <b>Caltucalor</b>, vypni mobilní data a otevři
-              <b>http://192.168.4.1</b>.</li>
+            <li><b>Next</b> → <b>Install</b>. Nahrávání trvá asi dvě minuty (jsou v něm i data skryté hry), pak se kalkulačka sama restartuje.</li>
+            <li>Poprvé se na klávesnici ukáže kalibrace – ťukni doprostřed tří křížků.</li>
             <li>Číslo verze najdeš v kalkulačce v <b>Nastavení</b> vpravo dole.</li>
           </ol>
         </div>
@@ -597,6 +571,8 @@
             <li>Vyplň klíč a hotspot, připoj kalkulačku kabelem a klikni na <b>Uložit do kalkulačky</b>
               (nebo je dej do <code>config.h</code>: <code>AI_API_KEY</code>, <code>WIFI_SSID</code>, <code>WIFI_PASSWORD</code>).</li>
           </ol>
+          <p class="size">Od verze 8.1 jsou klíč a heslo v kalkulačce zašifrované – v nahraném programu i v paměti.
+            Ukradeným klíčem jde utratit nejvýš to, co je na účtu, proto kredit bez automatického dobíjení a limit.</p>
           <p class="size">Hotspot musí být 2,4 GHz (iPhone: <b>Maximalizovat kompatibilitu</b>) a XIAO potřebuje připojenou anténku.</p>
         </div>
         <form class="ai-form" id="ai-form" autocomplete="off">
@@ -615,11 +591,11 @@
         <div>
           <p class="eyebrow">Návod · 13 stran</p>
           <h2>Celá stavba v jednom PDF</h2>
-          <p>Součástky, piny desky XIAO, zapojení obou verzí krok za krokem, baterie s nabíječkou a vypínačem,
+          <p>Součástky, piny desky XIAO, zapojení krok za krokem, baterie s nabíječkou a vypínačem,
             nahrání programu, první spuštění s kalibrací dotyku, ovládání a co dělat, když něco nefunguje.</p>
           <div class="cta">
             <a class="btn" href="caltucalor-navod.pdf" target="_blank" rel="noopener">Otevřít návod</a>
-            <span class="size">PDF · 512 kB · psaný pro verzi 7.9, stavba platí i pro 8.0</span>
+            <span class="size">PDF · 512 kB · psaný pro verzi 7.9, stavba platí i pro 8.1</span>
           </div>
         </div>
         <a class="pages" href="caltucalor-navod.pdf" target="_blank" rel="noopener" aria-label="Otevřít návod v PDF">
@@ -686,7 +662,7 @@
     </div>
     <div class="history-head">
       <div class="legend"><span><span class="badge" style="background:var(--accent);color:var(--accent-ink)">Velká</span> 8×</span>
-        <span><span class="badge" style="background:var(--surface-hi);color:var(--dim)">Malá</span> 25×</span></div>
+        <span><span class="badge" style="background:var(--surface-hi);color:var(--dim)">Malá</span> 26×</span></div>
       <div class="filter" role="group" aria-label="Které aktualizace ukázat">
         <button type="button" data-filter="vse" aria-pressed="true">Vše</button>
         <button type="button" data-filter="velke" aria-pressed="false">Velké</button>
@@ -694,7 +670,8 @@
       </div>
     </div>
     <ol class="updates" id="updates" data-filter="vse">
-      <li class="upd major"><div class="big">8<small>verze</small></div><span class="badge">Velká aktualizace</span><span class="badge now">aktuální</span><h3>AI v kalkulačce</h3><time>26. 11. 2026</time><ul><li>V menu 15 je AI: zeptáš se Clauda na cokoli – elektrotechnika, matika, fyzika i úplně jiné věci. Kalkulačka se připojí přes hotspot z mobilu a odpověď se na displeji píše postupně, jak ji Claude tvoří.</li><li>Tři předvolby: Rychle (Claude Haiku 5.5), Normálně (Sonnet 5.5) a Těžká úloha (Opus 5.5, víc přemýšlí). Dole je vidět, kolik odpověď stála tokenů a centů, nahoře kolik zbývá kreditu.</li><li>Klávesnice na psaní otázek: písmena QWERTZ, háčky a čárky podržením (e → é ě), velká písmena přes 2nd, záložka Symboly s ² √ π Ω µ ≤ … a Volby s posunem odpovědi, novou konverzací a kreditem. Další otázka navazuje na předchozí.</li><li>Matice z odpovědi se nakreslí jako mřížka a tlačítko Do Matic je uloží do A–D – dál se s nimi počítá v Maticích.</li><li>Potřebuješ vlastní API klíč a pár dolarů kreditu (na zkoušku stačí 5 $). Klíč a hotspot se do kalkulačky uloží <a href="#ai">na téhle stránce</a> kabelem, nebo v config.h.</li></ul></li>
+      <li class="upd minor"><div class="row"><span class="ver">8.1</span><span class="badge">Malá aktualizace</span><span class="name">Zašifrovaný API klíč a heslo</span><time>26. 11. 2026</time><span class="badge now">aktuální</span></div><ul><li>API klíč a heslo hotspotu jsou v kalkulačce zašifrované – v nahraném programu i v paměti. Kdo si stáhne obsah paměti nebo soubor s programem, klíč ani heslo v něm jako text nenajde.</li><li>Klíč uložený v paměti je zašifrovaný klíčem, který je pro každý čip jiný – z jedné kalkulačky do jiné se přenést nedá.</li><li>Klíč a heslo uložené ve verzi 8.0 se při prvním spuštění zašifrují samy; v config.h se nic nemění.</li><li>Dál se vydává jen verze s dotykovou klávesnicí. Verze s klávesnicí v mobilu skončila verzí 8.0.</li></ul></li>
+      <li class="upd major"><div class="big">8<small>verze</small></div><span class="badge">Velká aktualizace</span><h3>AI v kalkulačce</h3><time>26. 11. 2026</time><ul><li>V menu 15 je AI: zeptáš se Clauda na cokoli – elektrotechnika, matika, fyzika i úplně jiné věci. Kalkulačka se připojí přes hotspot z mobilu a odpověď se na displeji píše postupně, jak ji Claude tvoří.</li><li>Tři předvolby: Rychle (Claude Haiku 5.5), Normálně (Sonnet 5.5) a Těžká úloha (Opus 5.5, víc přemýšlí). Dole je vidět, kolik odpověď stála tokenů a centů, nahoře kolik zbývá kreditu.</li><li>Klávesnice na psaní otázek: písmena QWERTZ, háčky a čárky podržením (e → é ě), velká písmena přes 2nd, záložka Symboly s ² √ π Ω µ ≤ … a Volby s posunem odpovědi, novou konverzací a kreditem. Další otázka navazuje na předchozí.</li><li>Matice z odpovědi se nakreslí jako mřížka a tlačítko Do Matic je uloží do A–D – dál se s nimi počítá v Maticích.</li><li>Potřebuješ vlastní API klíč a pár dolarů kreditu (na zkoušku stačí 5 $). Klíč a hotspot se do kalkulačky uloží <a href="#ai">na téhle stránce</a> kabelem, nebo v config.h.</li></ul></li>
       <li class="upd minor"><div class="row"><span class="ver">7.9</span><span class="badge">Malá aktualizace</span><span class="name">Výběr levelu ve skryté hře</span><time>23. 11. 2026</time></div><ul><li>Ve skryté hře dotykové verze je nahoře nové tlačítko LEVEL: na displeji klávesnice si vybereš kterýkoli z 9 levelů (E1M1 až E1M9) a obtížnost (od I&#x27;m too young to die po Nightmare!) – s nápisy přímo z menu hry. Hra se mezitím pozastaví, HRAT začne vybraný level, ZPET vrátí hru tam, kde byla.</li><li>Ikona kalkulačky ve hře se musí podržet asi sekundu (ťuknutí nic nedělá, aby se ze hry nevyskočilo omylem); kalkulačka to teď napíše i při spuštění hry.</li><li>Ve hře je jen první epizoda (9 levelů) – víc jich volná verze nemá a plná verze se do paměti kalkulačky nevejde. Kalkulačka sama je beze změn.</li></ul></li>
       <li class="upd minor"><div class="row"><span class="ver">7.8</span><span class="badge">Malá aktualizace</span><span class="name">Oprava skryté hry</span><time>21. 11. 2026</time></div><ul><li>Skrytá hra v dotykové verzi na desce hned v první úrovni spadla s hlášením chyby (R_MapPlane …). Hra po restartu z kalkulačky dostala paměť se zbytky po kalkulačce, a ne vynulovanou, jak čekala – teď začíná s čistou pamětí. Na počítači se to předtím neukázalo, protože tam nová paměť nuly má; testy teď paměť schválně zaplní smetím.</li><li>Displej klávesnice měl ve hře barvy jako negativ. Hra teď oběma displejům každou sekundu znovu pošle nastavení (barvy, natočení, zapnutí) a klávesnici postupně překreslí – stejně, jako to kalkulačka dělá s displejem klávesnice od verze 7.3, kdyby rušení na drátech displeji něco přepnulo.</li><li>Hlášení chyby ve hře ukazuje i verzi hry. Kalkulačka sama je beze změn. Hra je v samostatné části paměti, takže kdo si kalkulačku nahrává sám přes PlatformIO, nainstaluje dotykovou verzi jednou z tohohle webu.</li></ul></li>
       <li class="upd minor"><div class="row"><span class="ver">7.7</span><span class="badge">Malá aktualizace</span><span class="name">Skrytá hra je teď mnohem větší</span><time>20. 11. 2026</time></div><ul><li>Skrytá hra ve verzi s dotykovou klávesnicí je teď úplně jiná – a mnohem větší. Kde je, zůstává tajemstvím (tip: Nastavení). Ve verzi s klávesnicí v mobilu zůstává ta původní.</li><li>Paměť kalkulačky je rozdělená jinak (kalkulačka, hra, data hry a uložené pozice). Nastavení a uložené grafy zůstanou, jen instalace dotykové verze trvá kvůli datům navíc asi dvě minuty.</li><li>Kdo si dotykovou verzi nahrává sám přes PlatformIO, přidá do platformio.ini řádek board_build.partitions = partitions_doom.csv (soubor je v projektu) a jednou nainstaluje kalkulačku z tohohle webu – jinak zůstane původní hra.</li></ul></li>
@@ -740,8 +717,8 @@
     </div>
 
     <div class="stats">
-      <div class="stat"><b>33 dní</b><span>od první verze po 8.0</span></div>
-      <div class="stat"><b>33 verzí</b><span>8 velkých, 25 malých</span></div>
+      <div class="stat"><b>33 dní</b><span>od první verze po 8.1</span></div>
+      <div class="stat"><b>34 verzí</b><span>8 velkých, 26 malých</span></div>
       <div class="stat"><b>36 000</b><span>řádků C++ (bez vygenerovaných písem a ikon)</span></div>
       <div class="stat"><b>1,2 mil.</b><span>příkladů porovnaných s původní kalkulačkou</span></div>
     </div>
@@ -793,8 +770,8 @@
         <li><span class="when">15. 11. 2026</span><h3>Verze 7: dotyková klávesnice</h3>
           <p>Klávesnice se přestěhovala z mobilu na druhý, dotykový displej pod hlavním a Wi-Fi je v téhle verzi
             úplně vypnutá. Oba displeje sdílejí jednu sběrnici SPI, dotyk se kalibruje třemi křížky a čip dotyku
-            (FT6336, CST816, GT911…) se pozná sám. Verze s klávesnicí v mobilu zůstává jako druhá volba
-            při instalaci a k oběma je návod v PDF.</p></li>
+            (FT6336, CST816, GT911…) se pozná sám. Verze s klávesnicí v mobilu zůstala jako druhá volba
+            až do verze 8.0 a k oběma je návod v PDF.</p></li>
         <li><span class="when">16. – 23. 11.</span><h3>Verze 7.1 – 7.9</h3>
           <p>Klávesnice na větším 3,5" displeji, plynulejší animace grafů, zámek obrazovky, převody jednotek,
             přesnější ukazatel baterie, snímek obrazovky do počítače přes USB a mnohem větší skrytá hra
@@ -803,7 +780,7 @@
           <p>Kalkulačka se umí zeptat Clauda: přes hotspot z mobilu pošle otázku na Claude API a odpověď
             ukazuje postupně, jak přichází. Tři předvolby (Haiku, Sonnet, Opus), cena každé odpovědi a odhad
             zbývajícího kreditu, klávesnice s písmeny a háčky, matice z odpovědi rovnou do Matic. Spojení je
-            šifrované a kalkulačka ověřuje certifikát serveru.</p></li>
+            šifrované a kalkulačka ověřuje certifikát serveru; od 8.1 jsou zašifrované i klíč a heslo v kalkulačce.</p></li>
         <li class="next"><span class="when">Dál</span><h3>Další verze</h3>
           <p>Vývoj pokračuje. Každá nová verze se objeví v <a href="#historie">Historii</a> a nainstaluje se
             odsud jedním kliknutím.</p></li>
@@ -846,7 +823,7 @@
       <h2>Uvnitř</h2>
       <p class="sub">Od stisku klávesy po obrázek na displeji.</p>
       <div class="pipeline">
-        <div class="stage"><b>Klávesnice</b><span>klávesy kreslí sama kalkulačka – na dotykový displej, nebo do mobilu – a ťuknutí se změní na znak nebo příkaz</span></div>
+        <div class="stage"><b>Klávesnice</b><span>klávesy kreslí sama kalkulačka na dotykový displej a ťuknutí se změní na znak nebo příkaz</span></div>
         <div class="stage"><b>Řádek a režimy</b><span>psaný řádek s kurzorem, historie, menu, uložené grafy</span></div>
         <div class="stage"><b>Knihovna Caltucalor</b><span>parser, zlomky, komplexní čísla, matice, rovnice, grafy</span></div>
         <div class="stage"><b>Displej</b><span>kreslení na druhém jádře, DMA na 80 MHz, překresluje se jen to, co se změnilo</span></div>
@@ -859,7 +836,7 @@
       <div class="checks">
         <div class="check"><i>✓</i><div><b>Simulátor na počítači</b><span>Stejný kód kalkulačky běží na PC, ťuká do klávesnice a fotí displej.</span></div></div>
         <div class="check"><i>✓</i><div><b>1,2 milionu příkladů</b><span>Náhodné příklady se spočítají v C++ i v původní kalkulačce v C# a výsledky se porovnají – bez jediného rozdílu.</span></div></div>
-        <div class="check"><i>✓</i><div><b>Náhodné ťukání</b><span>Tisíce náhodných kláves a kontrola, že oba displeje ukazují přesně to, co mají – s dotykovou i webovou klávesnicí.</span></div></div>
+        <div class="check"><i>✓</i><div><b>Náhodné ťukání</b><span>Tisíce náhodných kláves a kontrola, že oba displeje ukazují přesně to, co mají.</span></div></div>
         <div class="check"><i>✓</i><div><b>Otisky grafů</b><span>32 testovacích grafů se musí po každé optimalizaci nakreslit pixel po pixelu stejně.</span></div></div>
         <div class="check"><i>✓</i><div><b>Stovky testů</b><span>Zlomky, matematika, grafy, obvody, psaní na řádek i kalibrace dotyku na 120 různě otočených a zrcadlených panelech.</span></div></div>
         <div class="check"><i>✓</i><div><b>Bez varování</b><span>Program se přeloží bez jediného varování překladače.</span></div></div>
@@ -955,7 +932,7 @@
   </aside>
 
   <footer>
-    Caltucalor 8.0 · © 2026 wreze · původní Caltucalor v C#: <b>hamter</b> · instalace přes <a href="https://github.com/esphome/esp-web-tools">ESP Web Tools</a>
+    Caltucalor 8.1 · © 2026 wreze · původní Caltucalor v C#: <b>hamter</b> · instalace přes <a href="https://github.com/esphome/esp-web-tools">ESP Web Tools</a>
     (Apache 2.0) · písmo <a href="fonts/LICENSE-Inter.txt">Inter</a> (SIL OFL 1.1)
     · dotyková verze obsahuje i skrytý Doom (shareware © id Software, engine <a href="https://github.com/ozkl/doomgeneric">doomgeneric</a>,
     GPL v2 – <a href="doom/caltucalor-doom-zdroj.zip">zdrojový kód</a>)
@@ -1217,7 +1194,7 @@
       keyIn.value = "";
       passIn.value = "";
       if (got.length) say(got.join(" · ") + " – v kalkulačce otevři menu 15.", "ok");
-      else if (status.className.indexOf("err") < 0) say("Kalkulačka neodpověděla – má verzi 8.0? Je to správný port?", "err");
+      else if (status.className.indexOf("err") < 0) say("Kalkulačka neodpověděla – má verzi 8.0 nebo novější? Je to správný port?", "err");
     });
   })();
 </script>
@@ -1281,30 +1258,6 @@
         });
       });
     });
-
-    // ---- výběr verze programu: tlačítko instalace dostane manifest vybrané verze ----
-    // (?verze=web v adrese vybere verzi předem; poslední volba se pamatuje v prohlížeči)
-    var installer = document.getElementById("installer");
-    var chosen = document.getElementById("chosen-name");
-    var radios = [].slice.call(document.querySelectorAll('input[name="varianta"]'));
-    function pick(value, remember) {
-      radios.forEach(function (r) {
-        r.checked = r.value === value;
-        r.closest(".variant").classList.toggle("on", r.checked);
-        if (!r.checked) return;
-        var url = "firmware/8.0/" + r.value + "/manifest.json";
-        installer.setAttribute("manifest", url);
-        installer.manifest = url;
-        chosen.textContent = r.getAttribute("data-name");
-      });
-      if (remember) { try { localStorage.setItem("caltucalor-verze", value); } catch (e) {} }
-    }
-    radios.forEach(function (r) { r.addEventListener("change", function () { pick(r.value, true); }); });
-    var start = null;
-    try { start = localStorage.getItem("caltucalor-verze"); } catch (e) {}
-    var q = /[?&]verze=(dotyk|web)\b/.exec(location.search);
-    if (q) start = q[1];
-    if (start === "dotyk" || start === "web") pick(start, false);
   })();
 
   // ---- kalkulačka v prohlížeči: stejný kód jako v ESP32-S3, přeložený do WebAssembly ----
