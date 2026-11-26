@@ -247,6 +247,23 @@
   .shot-view canvas[hidden] { display: none; }
   .shot-view .empty { color: var(--faint); font-size: 14px; text-align: center; }
 
+  /* AI – klíč a hotspot do kalkulačky přes USB (Web Serial) – NOVÉ ve verzi 8.0 */
+  .ai-steps { color: var(--dim); padding-left: 1.25em; margin: 0 0 18px; }
+  .ai-steps li { margin: 0 0 9px; }
+  .ai-steps li b { color: var(--text); font-weight: 600; }
+  .ai-form {
+    display: flex; flex-direction: column; gap: 14px; padding: 20px; border-radius: 14px;
+    background: var(--bg-2); border: 1px solid var(--hairline);
+  }
+  .ai-form label { display: flex; flex-direction: column; gap: 6px; font-size: 14px; font-weight: 600; color: var(--dim); }
+  .ai-form input {
+    font: inherit; font-weight: 400; color: var(--text); background: var(--surface-hi); border: 1px solid var(--hairline);
+    border-radius: 10px; padding: 10px 12px; min-width: 0;
+  }
+  .ai-form input:focus-visible { outline: 2px solid var(--blue); outline-offset: 1px; }
+  .ai-form .btn { align-self: flex-start; }
+  .ai-form .size { margin: 0; }
+
   /* ---------- co umí ---------- */
   .features { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
   .feature { margin: 0; background: var(--surface); border: 1px solid var(--hairline); border-radius: var(--radius); overflow: hidden; transition: transform .2s, border-color .2s; }
@@ -426,7 +443,7 @@
       <a href="#vyvoj">Vývoj</a>
       <a href="#autor">O autorech</a>
     </nav>
-    <div class="pill">verze 7.9</div>
+    <div class="pill">verze 8.0</div>
   </div>
 </header>
 
@@ -440,9 +457,10 @@
         <h1>Grafy, zlomky, matice a&nbsp;obvody. <em>V&nbsp;kapse.</em></h1>
         <p class="lead">Caltucalor má dva displeje: nahoře výsledky a grafy, dole dotykovou klávesnici.
           Nebo jen jeden a klávesnici v mobilu – verzi si vybereš při instalaci. Vyzkoušej si ho přímo tady
-          a program do něj nahraješ z prohlížeče – stačí USB-C kabel.</p>
+          a program do něj nahraješ z prohlížeče – stačí USB-C kabel. Nově se ho jde zeptat i na cokoli
+          jiného: <a href="#ai">AI</a> (Claude) přes hotspot z mobilu.</p>
         <div class="cta">
-          <a class="btn" href="#nainstalovat">Nainstalovat verzi 7.9</a>
+          <a class="btn" href="#nainstalovat">Nainstalovat verzi 8.0</a>
           <a class="btn ghost" href="#navod">Návod v PDF</a>
           <a class="btn ghost" href="#historie">Co je nového</a>
         </div>
@@ -467,7 +485,7 @@
 
     <section class="block" id="nainstalovat">
       <div class="card">
-        <h2>Instalace verze 7.9</h2>
+        <h2>Instalace verze 8.0</h2>
         <p class="sub">Když už v kalkulačce Caltucalor je, tohle ji jen aktualizuje. Co je nového, najdeš
           v <a href="#historie">historii aktualizací</a>.</p>
 
@@ -491,7 +509,7 @@
               <label class="variant on">
                 <input type="radio" name="varianta" value="dotyk" data-name="Dotyková klávesnice" checked>
                 <span class="name">Dotyková klávesnice <span class="rec">doporučená</span></span>
-                <span class="desc">Dva displeje – dole dotyková klávesnice na 3,5" displeji (jde i 2,4–2,8"). Wi-Fi je vypnutá, mobil není potřeba.</span>
+                <span class="desc">Dva displeje – dole dotyková klávesnice na 3,5" displeji (jde i 2,4–2,8"). Wi-Fi je vypnutá (zapne ji jen AI), mobil není potřeba.</span>
                 <ul class="tags"><li>2 displeje</li><li>bez Wi-Fi</li><li>kapacitní dotyk</li><li>3,5" klávesnice</li></ul>
               </label>
               <label class="variant">
@@ -520,8 +538,8 @@
           <div>
             <h3>Nainstaluj</h3>
             <div class="install">
-              <esp-web-install-button id="installer" manifest="firmware/7.9/dotyk/manifest.json">
-                <button slot="activate" class="btn">Nainstalovat verzi 7.9</button>
+              <esp-web-install-button id="installer" manifest="firmware/8.0/dotyk/manifest.json">
+                <button slot="activate" class="btn">Nainstalovat verzi 8.0</button>
                 <span slot="unsupported" class="note">Tenhle prohlížeč neumí s kalkulačkou mluvit přes USB.
                   Otevři stránku na počítači v <b>Chrome</b> nebo <b>Edge</b>.</span>
                 <span slot="not-allowed" class="note">Instalace funguje jen na stránce s adresou <b>https://</b>.</span>
@@ -563,6 +581,35 @@
       </div>
     </section>
 
+    <section class="block" id="ai">
+      <div class="shot">
+        <div>
+          <p class="eyebrow">AI · od verze 8.0</p>
+          <h2>Zeptej se kalkulačky na cokoli</h2>
+          <p>V menu 15 je AI: otázka jde přes hotspot z mobilu na Clauda a odpověď se na displeji píše postupně.
+            Matice z odpovědi se nakreslí a jdou uložit do Matic. Potřebuješ vlastní API klíč:</p>
+          <ol class="ai-steps">
+            <li><a href="https://platform.claude.com/settings/keys" target="_blank" rel="noopener">platform.claude.com → API keys</a>
+              → <b>Create key</b> (workspace <b>Default</b>). Klíč <code>sk-ant-…</code> se ukáže jen jednou – zkopíruj ho.</li>
+            <li><a href="https://platform.claude.com/settings/billing" target="_blank" rel="noopener">Billing</a> → <b>Buy credits</b>:
+              na zkoušku stačí <b>5 $</b> (asi 300 otázek s předvolbou Normálně). V
+              <a href="https://platform.claude.com/settings/spend-limits" target="_blank" rel="noopener">limitech</a> si nastav měsíční strop.</li>
+            <li>Vyplň klíč a hotspot, připoj kalkulačku kabelem a klikni na <b>Uložit do kalkulačky</b>
+              (nebo je dej do <code>config.h</code>: <code>AI_API_KEY</code>, <code>WIFI_SSID</code>, <code>WIFI_PASSWORD</code>).</li>
+          </ol>
+          <p class="size">Hotspot musí být 2,4 GHz (iPhone: <b>Maximalizovat kompatibilitu</b>) a XIAO potřebuje připojenou anténku.</p>
+        </div>
+        <form class="ai-form" id="ai-form" autocomplete="off">
+          <label>API klíč<input id="ai-key" type="password" placeholder="sk-ant-…" spellcheck="false" autocomplete="off"></label>
+          <label>Hotspot – název<input id="ai-ssid" type="text" placeholder="třeba Vojtův iPhone" spellcheck="false" autocomplete="off"></label>
+          <label>Hotspot – heslo<input id="ai-pass" type="password" spellcheck="false" autocomplete="new-password"></label>
+          <button class="btn" type="submit" id="ai-save">Uložit do kalkulačky</button>
+          <p class="size" id="ai-status" role="status" aria-live="polite">Klíč i heslo jdou jen kabelem do kalkulačky – stránka je nikam
+            neposílá. Vyplň jen to, co chceš změnit. Funguje v Chrome nebo Edge na počítači.</p>
+        </form>
+      </div>
+    </section>
+
     <section class="block" id="navod">
       <div class="guide">
         <div>
@@ -572,7 +619,7 @@
             nahrání programu, první spuštění s kalibrací dotyku, ovládání a co dělat, když něco nefunguje.</p>
           <div class="cta">
             <a class="btn" href="caltucalor-navod.pdf" target="_blank" rel="noopener">Otevřít návod</a>
-            <span class="size">PDF · 512 kB · pro verzi 7.9</span>
+            <span class="size">PDF · 512 kB · psaný pro verzi 7.9, stavba platí i pro 8.0</span>
           </div>
         </div>
         <a class="pages" href="caltucalor-navod.pdf" target="_blank" rel="noopener" aria-label="Otevřít návod v PDF">
@@ -638,7 +685,7 @@
       <p class="lead">Velké aktualizace přinesly nové režimy a velké změny, malé jsou opravy a menší novinky.</p>
     </div>
     <div class="history-head">
-      <div class="legend"><span><span class="badge" style="background:var(--accent);color:var(--accent-ink)">Velká</span> 7×</span>
+      <div class="legend"><span><span class="badge" style="background:var(--accent);color:var(--accent-ink)">Velká</span> 8×</span>
         <span><span class="badge" style="background:var(--surface-hi);color:var(--dim)">Malá</span> 25×</span></div>
       <div class="filter" role="group" aria-label="Které aktualizace ukázat">
         <button type="button" data-filter="vse" aria-pressed="true">Vše</button>
@@ -647,7 +694,8 @@
       </div>
     </div>
     <ol class="updates" id="updates" data-filter="vse">
-      <li class="upd minor"><div class="row"><span class="ver">7.9</span><span class="badge">Malá aktualizace</span><span class="name">Výběr levelu ve skryté hře</span><time>23. 11. 2026</time><span class="badge now">aktuální</span></div><ul><li>Ve skryté hře dotykové verze je nahoře nové tlačítko LEVEL: na displeji klávesnice si vybereš kterýkoli z 9 levelů (E1M1 až E1M9) a obtížnost (od I&#x27;m too young to die po Nightmare!) – s nápisy přímo z menu hry. Hra se mezitím pozastaví, HRAT začne vybraný level, ZPET vrátí hru tam, kde byla.</li><li>Ikona kalkulačky ve hře se musí podržet asi sekundu (ťuknutí nic nedělá, aby se ze hry nevyskočilo omylem); kalkulačka to teď napíše i při spuštění hry.</li><li>Ve hře je jen první epizoda (9 levelů) – víc jich volná verze nemá a plná verze se do paměti kalkulačky nevejde. Kalkulačka sama je beze změn.</li></ul></li>
+      <li class="upd major"><div class="big">8<small>verze</small></div><span class="badge">Velká aktualizace</span><span class="badge now">aktuální</span><h3>AI v kalkulačce</h3><time>26. 11. 2026</time><ul><li>V menu 15 je AI: zeptáš se Clauda na cokoli – elektrotechnika, matika, fyzika i úplně jiné věci. Kalkulačka se připojí přes hotspot z mobilu a odpověď se na displeji píše postupně, jak ji Claude tvoří.</li><li>Tři předvolby: Rychle (Claude Haiku 5.5), Normálně (Sonnet 5.5) a Těžká úloha (Opus 5.5, víc přemýšlí). Dole je vidět, kolik odpověď stála tokenů a centů, nahoře kolik zbývá kreditu.</li><li>Klávesnice na psaní otázek: písmena QWERTZ, háčky a čárky podržením (e → é ě), velká písmena přes 2nd, záložka Symboly s ² √ π Ω µ ≤ … a Volby s posunem odpovědi, novou konverzací a kreditem. Další otázka navazuje na předchozí.</li><li>Matice z odpovědi se nakreslí jako mřížka a tlačítko Do Matic je uloží do A–D – dál se s nimi počítá v Maticích.</li><li>Potřebuješ vlastní API klíč a pár dolarů kreditu (na zkoušku stačí 5 $). Klíč a hotspot se do kalkulačky uloží <a href="#ai">na téhle stránce</a> kabelem, nebo v config.h.</li></ul></li>
+      <li class="upd minor"><div class="row"><span class="ver">7.9</span><span class="badge">Malá aktualizace</span><span class="name">Výběr levelu ve skryté hře</span><time>23. 11. 2026</time></div><ul><li>Ve skryté hře dotykové verze je nahoře nové tlačítko LEVEL: na displeji klávesnice si vybereš kterýkoli z 9 levelů (E1M1 až E1M9) a obtížnost (od I&#x27;m too young to die po Nightmare!) – s nápisy přímo z menu hry. Hra se mezitím pozastaví, HRAT začne vybraný level, ZPET vrátí hru tam, kde byla.</li><li>Ikona kalkulačky ve hře se musí podržet asi sekundu (ťuknutí nic nedělá, aby se ze hry nevyskočilo omylem); kalkulačka to teď napíše i při spuštění hry.</li><li>Ve hře je jen první epizoda (9 levelů) – víc jich volná verze nemá a plná verze se do paměti kalkulačky nevejde. Kalkulačka sama je beze změn.</li></ul></li>
       <li class="upd minor"><div class="row"><span class="ver">7.8</span><span class="badge">Malá aktualizace</span><span class="name">Oprava skryté hry</span><time>21. 11. 2026</time></div><ul><li>Skrytá hra v dotykové verzi na desce hned v první úrovni spadla s hlášením chyby (R_MapPlane …). Hra po restartu z kalkulačky dostala paměť se zbytky po kalkulačce, a ne vynulovanou, jak čekala – teď začíná s čistou pamětí. Na počítači se to předtím neukázalo, protože tam nová paměť nuly má; testy teď paměť schválně zaplní smetím.</li><li>Displej klávesnice měl ve hře barvy jako negativ. Hra teď oběma displejům každou sekundu znovu pošle nastavení (barvy, natočení, zapnutí) a klávesnici postupně překreslí – stejně, jako to kalkulačka dělá s displejem klávesnice od verze 7.3, kdyby rušení na drátech displeji něco přepnulo.</li><li>Hlášení chyby ve hře ukazuje i verzi hry. Kalkulačka sama je beze změn. Hra je v samostatné části paměti, takže kdo si kalkulačku nahrává sám přes PlatformIO, nainstaluje dotykovou verzi jednou z tohohle webu.</li></ul></li>
       <li class="upd minor"><div class="row"><span class="ver">7.7</span><span class="badge">Malá aktualizace</span><span class="name">Skrytá hra je teď mnohem větší</span><time>20. 11. 2026</time></div><ul><li>Skrytá hra ve verzi s dotykovou klávesnicí je teď úplně jiná – a mnohem větší. Kde je, zůstává tajemstvím (tip: Nastavení). Ve verzi s klávesnicí v mobilu zůstává ta původní.</li><li>Paměť kalkulačky je rozdělená jinak (kalkulačka, hra, data hry a uložené pozice). Nastavení a uložené grafy zůstanou, jen instalace dotykové verze trvá kvůli datům navíc asi dvě minuty.</li><li>Kdo si dotykovou verzi nahrává sám přes PlatformIO, přidá do platformio.ini řádek board_build.partitions = partitions_doom.csv (soubor je v projektu) a jednou nainstaluje kalkulačku z tohohle webu – jinak zůstane původní hra.</li></ul></li>
       <li class="upd minor"><div class="row"><span class="ver">7.6</span><span class="badge">Malá aktualizace</span><span class="name">Převody jednotek, přesnější baterie a snímek obrazovky</span><time>20. 11. 2026</time></div><ul><li>Převody jednotek: 5 km/h na m/s, 1 mi na km, 20 °C na °F, 5 GB na MiB, 1 kWh na J (místo na jde napsat i → nebo to). Ve Výpočtech je na klávesnici nová záložka Jedn. s nejčastějšími jednotkami (podržením klávesy další: µm, t, gal, kJ, atm, MiB …) a příkaz jednotky vypíše všechny: délka, plocha, objem, hmotnost, čas, rychlost, teplota, energie, výkon, tlak, úhel, data, frekvence i elektrické veličiny. Výsledek jde dál jako ans a jde uložit do proměnné (a = 3 mi na km).</li><li>Přesnější procenta baterie: kalkulačka počítá s tím, kolik zrovna bere (podsvícení, Wi-Fi, počítání), napětí měří 32× a rušení zahodí, pozná nabíjení a na baterii procenta už jen klesají – žádné skoky nahoru a dolů. Kdo má multimetr, změří napětí baterie a napíše ho: baterie 3.95 – kalkulačka si podle toho opraví dělič (baterie reset = zpět). Upozornění při 10 % a znovu při 3 %.</li><li>Snímek obrazovky přes USB: na téhle stránce je nová část Obraz z kalkulačky do počítače – v Chrome nebo Edge připoj kalkulačku kabelem a klikni Vyfotit: obraz displeje (u dotykové verze i klávesnice) se ukáže na stránce a Uložit PNG ho stáhne. Dokud je kalkulačka připojená, jde na ní napsat i snimek.</li><li>A někde v kalkulačce se schovává malé překvapení.</li></ul></li>
@@ -687,14 +735,14 @@
     <div class="tab-head">
       <p class="eyebrow">Vývoj</p>
       <h1>Jak vznikal Caltucalor</h1>
-      <p class="lead">Jak se z kalkulačky pro počítač stala za 30 dní kapesní kalkulačka. Vyvíjí ji wreze
+      <p class="lead">Jak se z kalkulačky pro počítač stala za 33 dní kapesní kalkulačka. Vyvíjí ji wreze
         spolu s Claudem, AI asistentem od Anthropicu.</p>
     </div>
 
     <div class="stats">
-      <div class="stat"><b>30 dní</b><span>od první verze po 7.9</span></div>
-      <div class="stat"><b>32 verzí</b><span>7 velkých, 25 malých</span></div>
-      <div class="stat"><b>33 000</b><span>řádků C++ (bez vygenerovaných písem a ikon)</span></div>
+      <div class="stat"><b>33 dní</b><span>od první verze po 8.0</span></div>
+      <div class="stat"><b>33 verzí</b><span>8 velkých, 25 malých</span></div>
+      <div class="stat"><b>36 000</b><span>řádků C++ (bez vygenerovaných písem a ikon)</span></div>
       <div class="stat"><b>1,2 mil.</b><span>příkladů porovnaných s původní kalkulačkou</span></div>
     </div>
 
@@ -751,6 +799,11 @@
           <p>Klávesnice na větším 3,5" displeji, plynulejší animace grafů, zámek obrazovky, převody jednotek,
             přesnější ukazatel baterie, snímek obrazovky do počítače přes USB a mnohem větší skrytá hra
             (ve 7.8 opravená podle zkoušky na skutečné kalkulačce, ve 7.9 s výběrem levelu a obtížnosti).</p></li>
+        <li><span class="when">26. 11. 2026</span><h3>Verze 8: AI v kalkulačce</h3>
+          <p>Kalkulačka se umí zeptat Clauda: přes hotspot z mobilu pošle otázku na Claude API a odpověď
+            ukazuje postupně, jak přichází. Tři předvolby (Haiku, Sonnet, Opus), cena každé odpovědi a odhad
+            zbývajícího kreditu, klávesnice s písmeny a háčky, matice z odpovědi rovnou do Matic. Spojení je
+            šifrované a kalkulačka ověřuje certifikát serveru.</p></li>
         <li class="next"><span class="when">Dál</span><h3>Další verze</h3>
           <p>Vývoj pokračuje. Každá nová verze se objeví v <a href="#historie">Historii</a> a nainstaluje se
             odsud jedním kliknutím.</p></li>
@@ -902,7 +955,7 @@
   </aside>
 
   <footer>
-    Caltucalor 7.9 · © 2026 wreze · původní Caltucalor v C#: <b>hamter</b> · instalace přes <a href="https://github.com/esphome/esp-web-tools">ESP Web Tools</a>
+    Caltucalor 8.0 · © 2026 wreze · původní Caltucalor v C#: <b>hamter</b> · instalace přes <a href="https://github.com/esphome/esp-web-tools">ESP Web Tools</a>
     (Apache 2.0) · písmo <a href="fonts/LICENSE-Inter.txt">Inter</a> (SIL OFL 1.1)
     · dotyková verze obsahuje i skrytý Doom (shareware © id Software, engine <a href="https://github.com/ozkl/doomgeneric">doomgeneric</a>,
     GPL v2 – <a href="doom/caltucalor-doom-zdroj.zip">zdrojový kód</a>)
@@ -1098,6 +1151,77 @@
   })();
 </script>
 <script>
+  // ---- NOVÉ (8.0): AI – klíč a hotspot do kalkulačky přes USB (Web Serial). Kalkulačka na
+  // "ai klic sk-ant-…" a "wifi "název" heslo" odpoví řádkem do sériové linky (klíč nevypíše celý).
+  (function () {
+    var form = document.getElementById("ai-form");
+    if (!form) return;
+    var status = document.getElementById("ai-status");
+    var btn = document.getElementById("ai-save");
+    function say(text, kind) { status.textContent = text; status.className = "size" + (kind ? " " + kind : ""); }
+    function wait(ms) { return new Promise(function (r) { setTimeout(r, ms); }); }
+    form.addEventListener("submit", async function (ev) {
+      ev.preventDefault();
+      var keyIn = document.getElementById("ai-key"), ssidIn = document.getElementById("ai-ssid"), passIn = document.getElementById("ai-pass");
+      var key = keyIn.value.trim(), ssid = ssidIn.value.trim(), pass = passIn.value;
+      if (!key && !ssid) { say("Vyplň API klíč nebo hotspot.", "err"); return; }
+      if (key && !/^sk-ant-[A-Za-z0-9_-]{20,}$/.test(key)) { say("API klíč začíná sk-ant- – zkopíruj ho celý.", "err"); return; }
+      if (/["\n\r]/.test(ssid) || /[\n\r]/.test(pass)) { say("Název hotspotu nesmí obsahovat uvozovky.", "err"); return; }
+      if (!("serial" in navigator)) { say("Tenhle prohlížeč neumí USB – otevři stránku na počítači v Chrome nebo Edge.", "err"); return; }
+      var port, writer, reader, got = [];
+      try {
+        port = await navigator.serial.requestPort();
+        await port.open({ baudRate: 115200 });
+      } catch (e) {
+        if (e && e.name === "NotFoundError") say("Žádný port nevybrán.");
+        else say("Port se nepodařilo otevřít: " + e.message + " (zavři Serial Monitor, snímek obrazovky nebo jinou kartu)", "err");
+        return;
+      }
+      btn.disabled = true;
+      try {
+        // (DTR zapnout dřív než vypnout RTS – kombinace RTS bez DTR by ESP32 restartovala)
+        try { await port.setSignals({ dataTerminalReady: true }); await port.setSignals({ requestToSend: false }); } catch (e) {}
+        writer = port.writable.getWriter();
+        reader = port.readable.getReader();
+        var dec = new TextDecoder(), buf = "";
+        var reading = (async function () {
+          try {
+            for (;;) {
+              var r = await reader.read();
+              if (r.done) break;
+              buf += dec.decode(r.value, { stream: true });
+              var i;
+              while ((i = buf.indexOf("\n")) >= 0) {
+                var l = buf.slice(0, i).replace(/\r$/, "");
+                buf = buf.slice(i + 1);
+                if (/API kl|Ulo[žz]e|hotspot/i.test(l)) got.push(l.replace(/^\[USB\]\s*ai (klic|workspace)[^>]*->\s*/, ""));
+              }
+            }
+          } catch (e) {}
+        })();
+        say("Ukládám…");
+        var enc = new TextEncoder();
+        await writer.write(enc.encode("\n"));
+        if (key) { await writer.write(enc.encode("ai klic " + key + "\n")); await wait(500); }
+        if (ssid) { await writer.write(enc.encode('wifi "' + ssid + '" ' + pass + "\n")); }
+        await wait(1500);
+        try { await reader.cancel(); } catch (e) {}
+        await reading;
+      } catch (e) {
+        say("Spojení s kalkulačkou se přerušilo (" + e.message + ").", "err");
+      }
+      try { if (reader) reader.releaseLock(); } catch (e) {}
+      try { if (writer) writer.releaseLock(); } catch (e) {}
+      try { await port.close(); } catch (e) {}
+      btn.disabled = false;
+      keyIn.value = "";
+      passIn.value = "";
+      if (got.length) say(got.join(" · ") + " – v kalkulačce otevři menu 15.", "ok");
+      else if (status.className.indexOf("err") < 0) say("Kalkulačka neodpověděla – má verzi 8.0? Je to správný port?", "err");
+    });
+  })();
+</script>
+<script>
   (function () {
     // ---- záložky (podle # v adrese, funguje i tlačítko Zpět) ----
     var tabs = [].slice.call(document.querySelectorAll("[data-tab]"));
@@ -1168,7 +1292,7 @@
         r.checked = r.value === value;
         r.closest(".variant").classList.toggle("on", r.checked);
         if (!r.checked) return;
-        var url = "firmware/7.9/" + r.value + "/manifest.json";
+        var url = "firmware/8.0/" + r.value + "/manifest.json";
         installer.setAttribute("manifest", url);
         installer.manifest = url;
         chosen.textContent = r.getAttribute("data-name");
